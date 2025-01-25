@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://4gycw43fxlti"]
+
+[ext_resource type="Texture2D" uid="uid://rsi6x0j2pkpt" path="res://icon.svg" id="1_1qucx"]
+[ext_resource type="PackedScene" uid="uid://d35spud1udsey" path="res://bubble.tscn" id="2_qrwjo"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1qucx")
+
+[node name="Bubble" parent="." instance=ExtResource("2_qrwjo")]
+position = Vector2(100, 100)
