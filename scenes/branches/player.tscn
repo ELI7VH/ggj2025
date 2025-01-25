@@ -21,3 +21,5 @@ frame = 0
 frame_progress = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
