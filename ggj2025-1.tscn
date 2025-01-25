@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://4gycw43fxlti"]
 
 [ext_resource type="Texture2D" uid="uid://u1jmvgh358t4" path="res://sprites/background.jpg" id="1_2vsqm"]
-[ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="2_qrwjo"]
 [ext_resource type="PackedScene" uid="uid://bdseieyno6vv6" path="res://scenes/branches/player.tscn" id="3_vdr0p"]
+[ext_resource type="PackedScene" uid="uid://bt6hpk7l2vi7" path="res://scenes/branches/door.tscn" id="4_hefkt"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -14,5 +14,5 @@ texture = ExtResource("1_2vsqm")
 [node name="Player" parent="." instance=ExtResource("3_vdr0p")]
 position = Vector2(200, 200)
 
-[node name="Bubble" parent="." instance=ExtResource("2_qrwjo")]
-position = Vector2(220, 300)
+[node name="Door" parent="." instance=ExtResource("4_hefkt")]
+position = Vector2(100, 100)

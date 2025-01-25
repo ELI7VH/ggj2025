@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt6hpk7l2vi7"]
+
+[ext_resource type="Texture2D" uid="uid://dl5k1hywiw7ls" path="res://sprites/Door.png" id="1_5lwq0"]
+[ext_resource type="Texture2D" uid="uid://rsi6x0j2pkpt" path="res://icon.svg" id="1_ayg8w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mqcq"]
+size = Vector2(18, 123.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahknb"]
+size = Vector2(70, 14)
+
+[node name="Door" type="RigidBody2D"]
+lock_rotation = true
+
+[node name="DoorImg" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+scale = Vector2(0.391304, 1)
+texture = ExtResource("1_5lwq0")
+
+[node name="DoorColl" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -0.75)
+shape = SubResource("RectangleShape2D_1mqcq")
+
+[node name="HandleImg" type="Sprite2D" parent="."]
+position = Vector2(-1, 1.90735e-06)
+scale = Vector2(0.546875, 0.109375)
+texture = ExtResource("1_ayg8w")
+
+[node name="HandleColl" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_ahknb")
