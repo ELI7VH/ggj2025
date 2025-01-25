@@ -17,3 +17,5 @@ bubbleScene = ExtResource("2_4xxup")
 shape = SubResource("CircleShape2D_kdvex")
 
 [node name="PlayerAnimator" parent="." instance=ExtResource("2_8l6ln")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
