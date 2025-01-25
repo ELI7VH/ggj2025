@@ -1,30 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt6hpk7l2vi7"]
+[gd_scene load_steps=3 format=3 uid="uid://bt6hpk7l2vi7"]
 
 [ext_resource type="Texture2D" uid="uid://dl5k1hywiw7ls" path="res://sprites/Door.png" id="1_5lwq0"]
-[ext_resource type="Texture2D" uid="uid://rsi6x0j2pkpt" path="res://icon.svg" id="1_ayg8w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mqcq"]
-size = Vector2(8, 123)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahknb"]
-size = Vector2(70, 14)
+size = Vector2(12, 127)
 
 [node name="Door" type="RigidBody2D"]
 lock_rotation = true
 
 [node name="DoorImg" type="Sprite2D" parent="."]
-position = Vector2(-0.5, -2)
-scale = Vector2(0.152174, 0.46875)
+scale = Vector2(0.25, 0.5)
 texture = ExtResource("1_5lwq0")
 
 [node name="DoorColl" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_1mqcq")
-
-[node name="HandleImg" type="Sprite2D" parent="."]
-scale = Vector2(0.184, 0.03)
-texture = ExtResource("1_ayg8w")
-
-[node name="HandleColl" type="CollisionShape2D" parent="."]
-scale = Vector2(0.4, 0.4)
-shape = SubResource("RectangleShape2D_ahknb")
