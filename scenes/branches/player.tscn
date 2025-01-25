@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://gon0htus2txt" path="res://scenes/branches/player_animator.tscn" id="2_8l6ln"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdvex"]
-radius = 34.0147
 
 [node name="Player" type="RigidBody2D"]
 lock_rotation = true
@@ -17,5 +16,8 @@ bubbleScene = ExtResource("2_4xxup")
 shape = SubResource("CircleShape2D_kdvex")
 
 [node name="PlayerAnimator" parent="." instance=ExtResource("2_8l6ln")]
+animation = &"full_idle"
+frame = 0
+frame_progress = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
