@@ -14,7 +14,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if count > emit_frequency:
-		print(delta)
 		var newBubble = bubbleScene.instantiate()
 		newBubble.position = position
 		newBubble.position.x = position.x + randi_range(-side_jitter,side_jitter)

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1ye15y32fx3j"]
+
+[ext_resource type="Texture2D" uid="uid://dl5k1hywiw7ls" path="res://sprites/Door.png" id="1_efg06"]
+[ext_resource type="Texture2D" uid="uid://rsi6x0j2pkpt" path="res://icon.svg" id="2_tkmtq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yyeyd"]
+size = Vector2(43, 255)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vadlt"]
+radius = 22.0
+
+[node name="Lever" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("1_efg06")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_yyeyd")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("../RigidBody2D")
+node_b = NodePath("../StaticBody2D")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_vadlt")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tkmtq")
