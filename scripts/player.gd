@@ -28,13 +28,12 @@ func _process(_delta: float) -> void:
 		force = force + spitspeed * _delta
 	if Input.is_action_just_released("blow"):
 		var newBubble = bubbleScene.instantiate()
-		newBubble.floatup.x = force * int(get_node("PlayerAnimator").flip_h)
 		if get_node("PlayerAnimator").flip_h:
 			newBubble.position.x = position.x - bubbleOffset
-#			newBubble.floatup.x = -force
+			newBubble.floatup.x = -force
 		else:
 			newBubble.position.x = position.x + bubbleOffset
-#			newBubble.floatup.x = force
+			newBubble.floatup.x = force
 		newBubble.position.y = position.y
 		force = 0.0
 		get_parent().add_child(newBubble)
