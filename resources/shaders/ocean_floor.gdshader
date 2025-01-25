@@ -15,13 +15,13 @@ void fragment() {
 	vec2 uv = UV;
 	uv.x = 0.5 - (uv.x - 0.5) / (1.0 - horizontal_skew * UV.y);
 	uv.y = pow(mix(1.0, 2.0, uv.y), 1.0 + vertical_skew) / 2.0;
-	
+
 	uv *= uv_scale;
-	
+
 	vec4 base_colour = texture(base_texture, uv);
-	
+
 	uv += sin(wave_a.xy * uv + TIME * wave_a.z) * wave_a.w;
 	uv += sin(wave_b.xy * uv + TIME * wave_b.z) * wave_b.w;
-	
+
 	COLOR = base_colour * texture(cell_texture, uv);
 }
