@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdseieyno6vv6"]
+[gd_scene load_steps=5 format=3 uid="uid://bdseieyno6vv6"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1ka8k"]
-[ext_resource type="Texture2D" uid="uid://30j46wot2imt" path="res://sprites/pufferfish.png" id="2_vedos"]
+[ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="2_4xxup"]
+[ext_resource type="PackedScene" uid="uid://gon0htus2txt" path="res://scenes/branches/player_animator.tscn" id="2_8l6ln"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdvex"]
 radius = 34.0147
@@ -10,9 +11,9 @@ radius = 34.0147
 lock_rotation = true
 linear_damp = 1.0
 script = ExtResource("1_1ka8k")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_vedos")
+bubbleScene = ExtResource("2_4xxup")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kdvex")
+
+[node name="PlayerAnimator" parent="." instance=ExtResource("2_8l6ln")]

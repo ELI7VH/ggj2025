@@ -1,22 +1,24 @@
 extends RigidBody2D
 
-var bubbleScene = preload("res://scenes/branches/bubble.tscn")
+# call .emit when picking up a bubble
+signal breath_filled
+# call .emit when breath has been exhausted
+signal breath_exhausted
 
-var direction = Vector2(0,0)
-var speed = 100
+@export var speed: float = 100
+@export var bubbleScene: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
-func _physics_process(delta: float) -> void:
-	var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	direction = input_direction * speed
-	apply_central_force(direction)
+func _physics_process(_delta: float) -> void:
+	var input_direction = Input.get_vector("left", "right", "up", "down")
+	apply_central_force(speed * input_direction.normalized())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("blow"):
 		var newBubble = bubbleScene.instantiate()
 		newBubble.position.x = position.x - 25
 		newBubble.position.y = position.y
