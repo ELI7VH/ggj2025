@@ -1,3 +1,23 @@
-[gd_scene format=3 uid="uid://dnkr0j5omcbfw"]
+[gd_scene load_steps=5 format=4 uid="uid://dnkr0j5omcbfw"]
+
+[ext_resource type="PackedScene" uid="uid://bdseieyno6vv6" path="res://scenes/branches/player.tscn" id="1_vx8ck"]
+[ext_resource type="Texture2D" uid="uid://ber3xyo3t3vbv" path="res://sprites/background2.jpg" id="2_q27lu"]
+[ext_resource type="TileSet" uid="uid://d1ijrclhvlhta" path="res://resources/level_tile_set.tres" id="3_4600v"]
+[ext_resource type="PackedScene" uid="uid://bt6hpk7l2vi7" path="res://scenes/branches/door.tscn" id="4_gp4ih"]
 
 [node name="Level11" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(239, 388)
+texture = ExtResource("2_q27lu")
+
+[node name="Player" parent="." instance=ExtResource("1_vx8ck")]
+position = Vector2(145, 153)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(200, 200)
+tile_map_data = PackedByteArray("AAADAAUAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAACAAAAAAAGAAQAAAACAAIAAAAGAAMAAAAAAAAAAAAHAAMAAAADAAIAAAAHAAQAAAADAAEAAAAHAAUAAAADAAEAAAAHAAYAAAADAAMAAAAGAAYAAAACAAMAAAAGAAUAAAACAAIAAAAFAAUAAAABAAEAAAAEAAUAAAABAAEAAAAEAAYAAAABAAMAAAAFAAYAAAABAAMAAAADAAYAAAAAAAEAAAAIAAAAAAADAAMAAAAHAAAAAAAAAAIAAAAHAP//AAAAAAIAAAAIAP//AAADAAAAAAD8/wEAAAAAAAAAAAD9/wEAAAADAAAAAAD9/wIAAAABAAEAAAD+/wIAAAADAAAAAAD+/wMAAAADAAMAAAD9/wMAAAABAAMAAAD8/wMAAAAAAAMAAAD8/wIAAAABAAIAAAD7/wIAAAAAAAQAAAD3/wgAAAABAAEAAAD4/wgAAAACAAEAAAD4/wcAAAADAAAAAAD5/wgAAAACAAQAAAD4/wkAAAADAAMAAAD2/wcAAAAAAAEAAAD2/wYAAAAAAAAAAAD3/wYAAAADAAAAAAD3/wcAAAABAAIAAAD3/wkAAAACAAMAAAD2/wgAAAAAAAIAAAD2/wkAAAAAAAMAAAD6/wgAAAABAAQAAAD7/wgAAAABAAQAAAD8/wgAAAABAAQAAAD9/wgAAAABAAQAAAD+/wgAAAACAAQAAAD//wgAAAACAAQAAAAAAAgAAAACAAQAAAABAAgAAAABAAQAAAACAAgAAAACAAQAAAADAAgAAAADAAMAAAADAAcAAAAEAAEAAAAHAAIAAAAEAAIAAAAHAAEAAAAEAAEAAAAHAP7/AAAEAAEAAAAHAP3/AAADAAAAAAAGAP3/AAAAAAMAAAAGAPz/AAADAAAAAAAFAPz/AAACAAQAAAAEAPz/AAAAAAAAAAAEAP3/AAADAAMAAAADAP3/AAACAAQAAAACAP3/AAAAAAQAAAA=")
+tile_set = ExtResource("3_4600v")
+
+[node name="Door" parent="." instance=ExtResource("4_gp4ih")]
+position = Vector2(86, 206)
