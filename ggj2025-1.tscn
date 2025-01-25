@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://4gycw43fxlti"]
+[gd_scene load_steps=8 format=3 uid="uid://4gycw43fxlti"]
 
 [ext_resource type="Texture2D" uid="uid://u1jmvgh358t4" path="res://sprites/background.jpg" id="1_2vsqm"]
 [ext_resource type="PackedScene" uid="uid://bdseieyno6vv6" path="res://scenes/branches/player.tscn" id="3_vdr0p"]
 [ext_resource type="PackedScene" uid="uid://bt6hpk7l2vi7" path="res://scenes/branches/door.tscn" id="4_hefkt"]
 [ext_resource type="PackedScene" uid="uid://dj45kchdwv2xt" path="res://scenes/branches/bubble_wall.tscn" id="4_rnrku"]
 [ext_resource type="PackedScene" uid="uid://d1ye15y32fx3j" path="res://scenes/branches/lever.tscn" id="5_e7v6n"]
+[ext_resource type="PackedScene" uid="uid://dk7wbb180ggce" path="res://scenes/branches/cog.tscn" id="6_6k7gm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jrhbb"]
 
@@ -33,3 +34,6 @@ position = Vector2(300, 25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeverStopper"]
 shape = SubResource("CircleShape2D_jrhbb")
+
+[node name="Cog" parent="." instance=ExtResource("6_6k7gm")]
+position = Vector2(101, 355)
