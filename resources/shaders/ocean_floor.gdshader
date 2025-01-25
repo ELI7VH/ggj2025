@@ -24,4 +24,5 @@ void fragment() {
 	uv += sin(wave_b.xy * uv + TIME * wave_b.z) * wave_b.w;
 
 	COLOR = base_colour * texture(cell_texture, uv);
+	COLOR *= clamp(4.0 * (2.75 - uv.y / uv_scale.y), 0, 1);                
 }

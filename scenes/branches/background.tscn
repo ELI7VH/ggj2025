@@ -1,14 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://7gxlt66kgcs6"]
+[gd_scene load_steps=5 format=3 uid="uid://7gxlt66kgcs6"]
 
 [ext_resource type="Material" uid="uid://68uatcev871y" path="res://resources/materials/ocean_floor.material" id="1_kjktg"]
+[ext_resource type="Material" uid="uid://b3gp3aqkutk1x" path="res://resources/materials/water.material" id="2_dejc8"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_6qwx6"]
 size = Vector2(2000, 120)
 
+[sub_resource type="QuadMesh" id="QuadMesh_ccs0d"]
+size = Vector2(2000, 400)
+
 [node name="Background" type="Node2D"]
+z_index = -10
 
 [node name="Ground" type="MeshInstance2D" parent="."]
-z_index = -10
+z_index = 1
 material = ExtResource("1_kjktg")
-position = Vector2(0, 200)
+position = Vector2(0, 135)
 mesh = SubResource("QuadMesh_6qwx6")
+
+[node name="Water" type="MeshInstance2D" parent="."]
+material = ExtResource("2_dejc8")
+position = Vector2(0, -80)
+mesh = SubResource("QuadMesh_ccs0d")
