@@ -1,0 +1,22 @@
+[gd_scene load_steps=9 format=3 uid="uid://digkub3xgfsdg"]
+
+[ext_resource type="AudioStream" uid="uid://d1bv66d8rgwic" path="res://resources/audio/sfx/bubbleshoot-1.ogg" id="1_3oa8l"]
+[ext_resource type="AudioStream" uid="uid://ck2m87fa8clik" path="res://resources/audio/sfx/bubbleshoot-2.ogg" id="2_wgi71"]
+[ext_resource type="AudioStream" uid="uid://48q0daaky1sf" path="res://resources/audio/sfx/bubbleshoot-3.ogg" id="3_lpsx1"]
+[ext_resource type="AudioStream" uid="uid://dcb7coewmiffc" path="res://resources/audio/sfx/bubbleshoot-4.ogg" id="4_2qaw1"]
+[ext_resource type="AudioStream" uid="uid://ccmnhmxi5u08p" path="res://resources/audio/sfx/bubbleshoot-5.ogg" id="5_op067"]
+[ext_resource type="AudioStream" uid="uid://d2sp3vlea5w5" path="res://resources/audio/sfx/bubbleshoot-6.ogg" id="6_d2i8a"]
+[ext_resource type="AudioStream" uid="uid://8rsjq0jq0sis" path="res://resources/audio/sfx/bubbleshoot-7.ogg" id="7_naxxm"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_na1wq"]
+streams_count = 7
+stream_0/stream = ExtResource("1_3oa8l")
+stream_1/stream = ExtResource("2_wgi71")
+stream_2/stream = ExtResource("3_lpsx1")
+stream_3/stream = ExtResource("4_2qaw1")
+stream_4/stream = ExtResource("5_op067")
+stream_5/stream = ExtResource("6_d2i8a")
+stream_6/stream = ExtResource("7_naxxm")
+
+[node name="Bubbleshoot" type="AudioStreamPlayer"]
+stream = SubResource("AudioStreamRandomizer_na1wq")
