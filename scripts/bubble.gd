@@ -1,6 +1,7 @@
 extends RigidBody2D
 
-var floatup = Vector2(0,-200)
+@export var floatup = Vector2(0,-200)
+@export var sideDecel = 0.7
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,6 +9,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	apply_central_force(floatup)	
+	floatup.x = floatup.x * sideDecel
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
