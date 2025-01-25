@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 		var newBubble = bubbleScene.instantiate()
 		newBubble.position = position
 		newBubble.position.x = position.x + randi_range(-side_jitter,side_jitter)
+		$SfxBlop.play()
 		get_parent().add_child(newBubble)
 		count = 0.0
 	else:

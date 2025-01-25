@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://4gycw43fxlti"]
+[gd_scene load_steps=9 format=3 uid="uid://4gycw43fxlti"]
 
 [ext_resource type="Texture2D" uid="uid://u1jmvgh358t4" path="res://sprites/background.jpg" id="1_2vsqm"]
 [ext_resource type="PackedScene" uid="uid://bdseieyno6vv6" path="res://scenes/branches/player.tscn" id="3_vdr0p"]
 [ext_resource type="PackedScene" uid="uid://bt6hpk7l2vi7" path="res://scenes/branches/door.tscn" id="4_hefkt"]
 [ext_resource type="PackedScene" uid="uid://dj45kchdwv2xt" path="res://scenes/branches/bubble_wall.tscn" id="4_rnrku"]
+[ext_resource type="PackedScene" uid="uid://q8326f5rk154" path="res://scenes/branches/sfx_blop.tscn" id="5_0yair"]
 [ext_resource type="PackedScene" uid="uid://d1ye15y32fx3j" path="res://scenes/branches/lever.tscn" id="5_e7v6n"]
 [ext_resource type="PackedScene" uid="uid://dk7wbb180ggce" path="res://scenes/branches/cog.tscn" id="6_6k7gm"]
 
@@ -24,6 +25,11 @@ position = Vector2(100, 100)
 
 [node name="BubbleWall" parent="." instance=ExtResource("4_rnrku")]
 position = Vector2(600, 400)
+
+[node name="SfxBlop" parent="BubbleWall" instance=ExtResource("5_0yair")]
+volume_db = -23.276
+max_distance = 280.0
+max_polyphony = 11
 
 [node name="Lever" parent="." instance=ExtResource("5_e7v6n")]
 position = Vector2(400, 100)
