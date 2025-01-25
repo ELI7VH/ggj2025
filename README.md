@@ -17,6 +17,7 @@
 
 - [ ] foreground tile
 - [ ] background
+- [ ] currents?
 
 # Mechanics
 
