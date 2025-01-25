@@ -12,4 +12,6 @@ export_presets.cfg
 
 addons/
 
+.vscode
+
 settings.ini
