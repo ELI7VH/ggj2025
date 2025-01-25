@@ -9,7 +9,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jrhbb"]
 
-[node name="Node2D" type="Node2D"]
+[node name="TestLevel" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(350, 290)
