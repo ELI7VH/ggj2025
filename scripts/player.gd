@@ -18,6 +18,9 @@ func _physics_process(_delta: float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	# TODO move this to base level node and put in a menu
+	if Input.is_action_just_pressed("menu"):
+		get_tree().quit()
 	if Input.is_action_just_pressed("blow"):
 		var newBubble = bubbleScene.instantiate()
 		newBubble.position.x = position.x - 25
