@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj45kchdwv2xt"]
+
+[ext_resource type="Script" path="res://scripts/bubble_wall.gd" id="1_cdhwg"]
+[ext_resource type="Texture2D" uid="uid://rsi6x0j2pkpt" path="res://icon.svg" id="2_trum7"]
+
+[node name="BubbleWall" type="Node2D"]
+script = ExtResource("1_cdhwg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_trum7")
