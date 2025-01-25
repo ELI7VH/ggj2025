@@ -9,3 +9,4 @@
 texture = ExtResource("1_1qucx")
 
 [node name="Bubble" parent="." instance=ExtResource("2_qrwjo")]
+position = Vector2(100, 100)

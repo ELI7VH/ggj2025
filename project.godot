@@ -14,3 +14,7 @@ config/name="Bubble"
 run/main_scene="res://ggj2025-1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[physics]
+
+2d/default_gravity_vector=Vector2(0, 0)
