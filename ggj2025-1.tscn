@@ -29,7 +29,7 @@ position = Vector2(400, 100)
 rotation = 1.5708
 
 [node name="LeverStopper" type="StaticBody2D" parent="."]
-position = Vector2(300, 50)
+position = Vector2(300, 25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeverStopper"]
 shape = SubResource("CircleShape2D_jrhbb")
