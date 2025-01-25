@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://4gycw43fxlti"]
+[gd_scene load_steps=4 format=3 uid="uid://4gycw43fxlti"]
 
 [ext_resource type="Texture2D" uid="uid://rsi6x0j2pkpt" path="res://icon.svg" id="1_1qucx"]
 [ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="2_qrwjo"]
+[ext_resource type="PackedScene" uid="uid://bdseieyno6vv6" path="res://scenes/branches/player.tscn" id="3_vdr0p"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_1qucx")
 
+[node name="Player" parent="." instance=ExtResource("3_vdr0p")]
+position = Vector2(200, 200)
+
 [node name="Bubble" parent="." instance=ExtResource("2_qrwjo")]
-position = Vector2(100, 100)
+position = Vector2(220, 300)
