@@ -11,4 +11,7 @@ func _physics_process(delta: float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	# remove bubble if it goes offscreen
+	if (position.y < 0):
+		queue_free()
 	pass
