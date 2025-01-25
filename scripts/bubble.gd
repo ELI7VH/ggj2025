@@ -8,8 +8,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	apply_central_force(floatup)	
-#	move_and_collide(floatup)
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
