@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://gon0htus2txt"]
+
+[ext_resource type="SpriteFrames" uid="uid://s0x57l5ypk82" path="res://resources/sprite_frames/fish_sprite_frames.tres" id="1_vaqc1"]
+[ext_resource type="Script" path="res://scripts/player_animator.gd" id="2_dip5p"]
+
+[node name="PlayerAnimator" type="AnimatedSprite2D"]
+position = Vector2(-2, 2)
+sprite_frames = ExtResource("1_vaqc1")
+animation = &"full_swim"
+autoplay = "full_idle"
+frame = 2
+frame_progress = 0.564713
+script = ExtResource("2_dip5p")
