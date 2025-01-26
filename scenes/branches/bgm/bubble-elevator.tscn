@@ -8,4 +8,5 @@
 stream = ExtResource("1_4o0w5")
 volume_db = -21.059
 autoplay = true
+bus = &"BGM"
 parameters/looping = true
