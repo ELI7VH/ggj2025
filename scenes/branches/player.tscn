@@ -106,11 +106,13 @@ drag_vertical_enabled = true
 
 [node name="Bubbleshoot" parent="." instance=ExtResource("5_08ebj")]
 mix_target = 2
+bus = &"SFX"
 script = ExtResource("6_sj4sp")
 
 [node name="BubbleCharge" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("bubble_blower")]
 stream = ExtResource("7_hp88d")
 volume_db = -13.12
+bus = &"SFX"
 parameters/looping = true
 script = ExtResource("15_6n6wj")
 bubble_blower = NodePath("../BubbleBlower")
@@ -118,16 +120,19 @@ bubble_blower = NodePath("../BubbleBlower")
 [node name="BubbleExausted" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_vegnw")
 volume_db = -4.8
+bus = &"SFX"
 script = ExtResource("22_v5vnl")
 
 [node name="BreathGained" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_s4lf6")
 volume_db = -14.813
+bus = &"SFX"
 script = ExtResource("37_w8en8")
 
 [node name="Dash" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_pklgd")
 volume_db = -7.098
+bus = &"SFX"
 script = ExtResource("46_85q6v")
 
 [connection signal="dashed" from="." to="PlayerAnimator" method="_on_dashed"]

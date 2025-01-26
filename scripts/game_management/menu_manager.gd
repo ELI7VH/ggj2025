@@ -31,6 +31,7 @@ func _process(_delta: float):
 
 
 func start_game():
+	$StartMenuBGM.stop()
 	start_menu_root.hide()
 	level_manager.load_starting_level()
 	get_tree().paused = false
@@ -43,6 +44,8 @@ func restart_level():
 
 
 func show_start_menu():
+	$PauseMenuBGM.stop()
+	$StartMenuBGM.play()
 	level_manager.unload_level()
 	in_level = false
 	hide_all_submenus()
@@ -62,8 +65,11 @@ func toggle_pause():
 	hide_all_submenus()
 	get_tree().paused = !get_tree().paused
 	if get_tree().paused:
+		$PauseMenuBGM.play()
 		pause_menu_root.show()
 		focus_entry_pause.grab_focus()
+	else:
+		$PauseMenuBGM.stop()
 
 
 func hide_all_submenus():

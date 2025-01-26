@@ -1,8 +1,13 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://dl1bj6axnhpjl"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://dl1bj6axnhpjl"]
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_77e6e"]
 resource_name = "Reverb"
-wet = 0.46
+hipass = 0.34
+wet = 0.0
+
+[sub_resource type="AudioEffectStereoEnhance" id="AudioEffectStereoEnhance_vr026"]
+resource_name = "StereoEnhance"
+pan_pullout = 0.0
 
 [resource]
 bus/1/name = &"BGM"
@@ -13,3 +18,11 @@ bus/1/volume_db = -7.82255
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectReverb_77e6e")
 bus/1/effect/0/enabled = true
+bus/2/name = &"SFX"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectStereoEnhance_vr026")
+bus/2/effect/0/enabled = true
