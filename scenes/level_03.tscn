@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://dq5mef13dr8js"]
+[gd_scene load_steps=8 format=4 uid="uid://dq5mef13dr8js"]
 
 [ext_resource type="PackedScene" uid="uid://7gxlt66kgcs6" path="res://scenes/branches/background.tscn" id="1_iv3yq"]
 [ext_resource type="PackedScene" uid="uid://bdseieyno6vv6" path="res://scenes/branches/player.tscn" id="2_jk4hx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bdu1qxwsj34jq" path="res://scenes/branches/door2.tscn" id="4_q4yoy"]
 [ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="5_uihc2"]
 [ext_resource type="PackedScene" uid="uid://blto5xmw2iuax" path="res://scenes/branches/bgm/bubble-elevator.tscn" id="6_naplj"]
+[ext_resource type="PackedScene" uid="uid://b0m3fujdo7f3k" path="res://scenes/branches/bubble_receptacle.tscn" id="7_s4spi"]
 
 [node name="Level03" type="Node2D"]
 
@@ -18,9 +19,9 @@ move_force = 8.0
 dash_force = 600.0
 gravity = 0.5
 friction = 0.1
-initial_breath = 0.0
 bubble_fixed_recoil = 10.0
 bubble_recoil_size_multiplier = 2.0
+initial_breath = 0.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(200, 200)
@@ -53,3 +54,7 @@ position = Vector2(-0.774338, 14.8353)
 [node name="Bubble4" parent="Bubbles" instance=ExtResource("5_uihc2")]
 position = Vector2(-57.559, 5.91623)
 radius = 4.0
+
+[node name="Receptacle" parent="." instance=ExtResource("7_s4spi")]
+position = Vector2(-95, 0)
+required_lift_force = 400.0
