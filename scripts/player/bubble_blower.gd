@@ -9,7 +9,6 @@ signal breath_exhausted
 @export var bubble_scene: PackedScene
 @export var base_spawn_offset: float = 10
 @export var collection_proximity: float = 12
-@export var breath_maximum: float = 40
 @export var breath_empty_threshold: float = 2
 
 @export_subgroup('size', 'size')
@@ -21,7 +20,9 @@ signal breath_exhausted
 @export var dash_spawn_offset: float = -20
 @export var dash_spawn_impulse: Vector2 = Vector2(-200, 0)
 
-@onready var breath: float = breath_maximum
+var breath_capacity: float
+var breath: float
+
 var can_dash: bool: get = get_can_dash
 var direction: int: get = get_direction
 var spawn_point: Vector2: get = get_spawn_point
@@ -87,12 +88,12 @@ func expend_breath(bubble_size: float):
 
 
 func collect_bubble(bubble: Bubble):
-	if breath >= breath_maximum:
+	if breath >= breath_capacity:
 		return
-	if breath_maximum - breath > bubble.radius / 2:
+	if breath_capacity - breath > bubble.radius / 2:
 		bubble.queue_free()
 	else:
-		bubble.radius -= breath_maximum - breath
+		bubble.radius -= breath_capacity - breath
 	breath += bubble.radius
 	clamp_breath()
 	breath_gained.emit(bubble.radius)
@@ -100,7 +101,7 @@ func collect_bubble(bubble: Bubble):
 
 
 func clamp_breath():
-	breath = clampf(breath, 0, breath_maximum)
+	breath = clampf(breath, 0, breath_capacity)
 
 func limit_bubble_size(bubble_size: float) -> float:
 	var breath_limit = max(breath, size_minimum)

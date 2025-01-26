@@ -10,6 +10,10 @@ signal turned
 @export var dash_push_period: float = 0.2
 @export var dash_push_force: float = 200
 
+@export_subgroup('breath')
+@export var initial_breath: float = 40
+@export var breath_capacity: float = 40
+
 @export_subgroup('bubbles', 'bubble')
 @export var bubble_blower: BubbleBlower
 @export var bubble_fixed_recoil: float = 10
@@ -21,6 +25,8 @@ var push_period_timer = 0
 
 func _ready() -> void:
 	bubble_blower.bubble_blown.connect(_on_bubble_blown)
+	bubble_blower.breath_capacity = breath_capacity
+	bubble_blower.breath = initial_breath
 
 func _physics_process(delta: float) -> void:
 	var input_direction = Input.get_vector("left", "right", "up", "down")
