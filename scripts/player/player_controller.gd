@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal dashed
+signal turned
 
 @export var move_force: float = 8
 @export var dash_force: float = 600
@@ -24,7 +25,9 @@ func _physics_process(_delta: float) -> void:
 	velocity.y += gravity
 
 	if abs(input_direction.x) > 0.1:
-		direction = 1 if (input_direction.x > 0) else -1
+		if direction * input_direction.x < 0:
+			direction = 1 if (input_direction.x > 0) else -1
+			turned.emit()
 
 	if bubble_blower.can_dash && Input.is_action_just_pressed('dash'):
 		bubble_blower.spawn_dash_bubble()
