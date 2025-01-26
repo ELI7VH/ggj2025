@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bt6hpk7l2vi7"]
+[gd_scene load_steps=4 format=3 uid="uid://bt6hpk7l2vi7"]
 
 [ext_resource type="Texture2D" uid="uid://dl5k1hywiw7ls" path="res://sprites/Door.png" id="1_5lwq0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j750p"]
+friction = 0.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mqcq"]
 size = Vector2(12, 127)
 
 [node name="Door" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_j750p")
 lock_rotation = true
 
 [node name="DoorImg" type="Sprite2D" parent="."]
