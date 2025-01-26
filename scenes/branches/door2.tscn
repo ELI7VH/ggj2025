@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdu1qxwsj34jq"]
 
-[ext_resource type="Script" path="res://scenes/branches/door_2.gd" id="1_l3xgk"]
+[ext_resource type="Script" path="res://scripts/door_2.gd" id="1_l3xgk"]
 [ext_resource type="Texture2D" uid="uid://dl5k1hywiw7ls" path="res://sprites/Door.png" id="1_q1x7p"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j750p"]
