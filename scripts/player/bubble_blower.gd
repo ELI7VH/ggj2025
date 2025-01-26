@@ -90,7 +90,7 @@ func _process(delta: float) -> void:
 		held_bubble_collider.radius = size_minimum
 		held_bubble_collision_shape.disabled = false
 	elif Input.is_action_just_pressed('blow') && breath < size_minimum:
-			emit_signal("bubble_cant_blow")
+			bubble_cant_blow.emit()
 
 func spawn_dash_bubble():
 	var dash_bubble = bubble_scene.instantiate()

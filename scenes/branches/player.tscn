@@ -111,7 +111,7 @@ script = ExtResource("6_sj4sp")
 
 [node name="BubbleCharge" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("bubble_blower")]
 stream = ExtResource("7_hp88d")
-volume_db = -13.12
+volume_db = -17.28
 bus = &"SFX"
 parameters/looping = true
 script = ExtResource("15_6n6wj")

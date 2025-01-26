@@ -43,3 +43,7 @@ func _on_body_entered_fill_area(body: PhysicsBody2D):
 
 func get_normalized_progress() -> float:
 	return remap(claw.position.y, rest_height, height_threshold, 0, 1)
+
+
+func _on_threshold_reached() -> void:
+	pass # Replace with function body.
