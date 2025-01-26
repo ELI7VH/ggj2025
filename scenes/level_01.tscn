@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://d1ijrclhvlhta" path="res://resources/level_tile_set.tres" id="3_4600v"]
 [ext_resource type="PackedScene" uid="uid://blto5xmw2iuax" path="res://scenes/branches/bgm/bubble-elevator.tscn" id="4_rjbsd"]
 [ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="5_nb7or"]
-[ext_resource type="PackedScene" path="res://scenes/branches/bubble_receptacle.tscn" id="6_b5w88"]
+[ext_resource type="PackedScene" uid="uid://b0m3fujdo7f3k" path="res://scenes/branches/bubble_receptacle.tscn" id="6_b5w88"]
 
 [node name="Level01" type="Node2D"]
 

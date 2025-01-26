@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bdseieyno6vv6"]
+[gd_scene load_steps=44 format=3 uid="uid://bdseieyno6vv6"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_rhct6"]
 [ext_resource type="PackedScene" uid="uid://gon0htus2txt" path="res://scenes/branches/player_animator.tscn" id="2_8l6ln"]
@@ -6,14 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="4_wnpsa"]
 [ext_resource type="PackedScene" uid="uid://digkub3xgfsdg" path="res://scenes/branches/sfx/bubbleshoot.tscn" id="5_08ebj"]
 [ext_resource type="Script" path="res://scenes/branches/sfx/sfx2.gd" id="6_sj4sp"]
-[ext_resource type="AudioStream" uid="uid://cfn4d1ejgabvp" path="res://resources/audio/sfx/bubblecharge/bubble-charge-1.ogg" id="7_fefbo"]
-[ext_resource type="AudioStream" uid="uid://b30y4gim0ape7" path="res://resources/audio/sfx/bubblecharge/bubble-charge-2.ogg" id="8_xtih2"]
-[ext_resource type="AudioStream" uid="uid://dalddxi5h4ihy" path="res://resources/audio/sfx/bubblecharge/bubble-charge-3.ogg" id="9_x1nui"]
-[ext_resource type="AudioStream" uid="uid://dlrkam5nh7rlo" path="res://resources/audio/sfx/bubblecharge/bubble-charge-4.ogg" id="10_vtfex"]
-[ext_resource type="AudioStream" uid="uid://dyyxygmubcdy4" path="res://resources/audio/sfx/bubblecharge/bubble-charge-5.ogg" id="11_7n5f5"]
-[ext_resource type="AudioStream" uid="uid://bfveyxgtmo1oj" path="res://resources/audio/sfx/bubblecharge/bubble-charge-6.ogg" id="12_3ph20"]
-[ext_resource type="AudioStream" uid="uid://dkfp5q60xk2qn" path="res://resources/audio/sfx/bubblecharge/bubble-charge-7.ogg" id="13_rjo76"]
-[ext_resource type="AudioStream" uid="uid://c3ebk52s6egxm" path="res://resources/audio/sfx/bubblecharge/bubble-charge-8.ogg" id="14_kj77a"]
+[ext_resource type="AudioStream" uid="uid://dpik3lklr3s5j" path="res://resources/audio/sfx/bubblecharge/bubble_charge-deux.ogg" id="7_hp88d"]
 [ext_resource type="Script" path="res://scripts/audio/bubble_charge.gd" id="15_6n6wj"]
 [ext_resource type="AudioStream" uid="uid://cgov1a7ro5hi4" path="res://resources/audio/sfx/bubbleexausted/bubble-exausted-1.ogg" id="16_2fjb3"]
 [ext_resource type="AudioStream" uid="uid://b23t1inwm7ka0" path="res://resources/audio/sfx/bubbleexausted/bubble-exausted-2.ogg" id="17_8a46f"]
@@ -48,17 +41,6 @@
 [ext_resource type="Script" path="res://scripts/audio/dash.gd" id="46_85q6v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdvex"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d5ks2"]
-streams_count = 8
-stream_0/stream = ExtResource("7_fefbo")
-stream_1/stream = ExtResource("8_xtih2")
-stream_2/stream = ExtResource("9_x1nui")
-stream_3/stream = ExtResource("10_vtfex")
-stream_4/stream = ExtResource("11_7n5f5")
-stream_5/stream = ExtResource("12_3ph20")
-stream_6/stream = ExtResource("13_rjo76")
-stream_7/stream = ExtResource("14_kj77a")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vegnw"]
 streams_count = 6
@@ -126,10 +108,12 @@ drag_vertical_enabled = true
 mix_target = 2
 script = ExtResource("6_sj4sp")
 
-[node name="BubbleCharge" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_d5ks2")
-volume_db = -17.6
+[node name="BubbleCharge" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("bubble_blower")]
+stream = ExtResource("7_hp88d")
+volume_db = -13.12
+parameters/looping = true
 script = ExtResource("15_6n6wj")
+bubble_blower = NodePath("../BubbleBlower")
 
 [node name="BubbleExausted" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_vegnw")
