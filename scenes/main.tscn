@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bc5ut2d82sjoo"]
+[gd_scene load_steps=25 format=3 uid="uid://bsbm8pnd2clrv"]
 
 [ext_resource type="Script" path="res://scripts/game_management/level_progression_manager.gd" id="1_n8oi1"]
 [ext_resource type="Material" uid="uid://68uatcev871y" path="res://resources/materials/ocean_floor.material" id="1_s1c0w"]
@@ -89,7 +89,7 @@ stretch_shrink = 2
 [node name="SubViewport" type="SubViewport" parent="Background"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(480, 270)
+size = Vector2i(240, 135)
 render_target_update_mode = 4
 
 [node name="Node2D" type="Node2D" parent="Background/SubViewport"]
@@ -124,7 +124,6 @@ position = Vector2(0, 20)
 mesh = SubResource("QuadMesh_w7crw")
 
 [node name="LevelManager" type="SubViewportContainer" parent="." node_paths=PackedStringArray("level_parent")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -141,5 +140,5 @@ transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
-size = Vector2i(960, 540)
-render_target_update_mode = 0
+size = Vector2i(480, 270)
+render_target_update_mode = 4

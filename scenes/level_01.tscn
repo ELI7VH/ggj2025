@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://drkynxt1jr0xh"]
+[gd_scene load_steps=7 format=4 uid="uid://drkynxt1jr0xh"]
 
 [ext_resource type="PackedScene" uid="uid://7gxlt66kgcs6" path="res://scenes/branches/background.tscn" id="1_g20ic"]
 [ext_resource type="PackedScene" uid="uid://bdseieyno6vv6" path="res://scenes/branches/player.tscn" id="1_vx8ck"]
 [ext_resource type="TileSet" uid="uid://d1ijrclhvlhta" path="res://resources/level_tile_set.tres" id="3_4600v"]
 [ext_resource type="PackedScene" uid="uid://blto5xmw2iuax" path="res://scenes/branches/bgm/bubble-elevator.tscn" id="4_rjbsd"]
 [ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="5_nb7or"]
+[ext_resource type="PackedScene" path="res://scenes/branches/bubble_receptacle.tscn" id="6_b5w88"]
 
 [node name="Level01" type="Node2D"]
 
@@ -53,3 +54,7 @@ radius = 4.0
 [node name="Bubble2" parent="Bubbles" instance=ExtResource("5_nb7or")]
 position = Vector2(388, 213)
 radius = 6.0
+
+[node name="Receptacle" parent="." instance=ExtResource("6_b5w88")]
+position = Vector2(719, 48)
+required_lift_force = 400.0
