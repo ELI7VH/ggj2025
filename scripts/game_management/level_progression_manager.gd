@@ -20,11 +20,9 @@ var load_delay_tween: Tween
 
 func _ready():
 	LevelSignalBus.level_completed.connect(_on_level_completed)
-	LevelSignalBus.reset_triggered.connect(reset_level)
 
 
 func reset_level():
-	LevelSignalBus.notify_reset_triggered()
 	unload_level()
 	load_level(current_level_index)
 	LevelSignalBus.notify_level_started()

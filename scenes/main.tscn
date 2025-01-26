@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bc5ut2d82sjoo"]
+[gd_scene load_steps=35 format=3 uid="uid://bc5ut2d82sjoo"]
 
 [ext_resource type="Theme" uid="uid://1h3bupl7mgim" path="res://resources/ui/menu.theme" id="1_8iac0"]
 [ext_resource type="Script" path="res://scripts/game_management/level_progression_manager.gd" id="1_n8oi1"]
@@ -115,7 +115,15 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("main_menu_root", "level_manager", "volume_slider")]
+[sub_resource type="LabelSettings" id="LabelSettings_frguu"]
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 9
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_offset = Vector2(1, -4)
+
+[node name="Main" type="Control" node_paths=PackedStringArray("level_manager", "volume_sliders", "start_menu_root", "level_select_root", "pause_menu_root", "focus_entry_start", "focus_entry_level_select", "focus_entry_pause")]
 process_mode = 3
 texture_filter = 1
 layout_mode = 3
@@ -126,9 +134,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8iac0")
 script = ExtResource("2_qc6e2")
-main_menu_root = NodePath("StartMenu")
 level_manager = NodePath("LevelManager")
-volume_slider = NodePath("StartMenu/HSlider")
+volume_sliders = [NodePath("StartMenu/VolumeSlider"), NodePath("PauseMenu/VolumeSlider")]
+start_menu_root = NodePath("StartMenu")
+level_select_root = NodePath("LevelSelection")
+pause_menu_root = NodePath("PauseMenu")
+focus_entry_start = NodePath("StartMenu/Buttons/PlayButton")
+focus_entry_level_select = NodePath("LevelSelection")
+focus_entry_pause = NodePath("PauseMenu/Buttons/HBoxContainer/RestartButton")
 
 [node name="Background" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -226,7 +239,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "PLAY"
 
-[node name="HSlider" type="HSlider" parent="StartMenu"]
+[node name="VolumeSlider" type="HSlider" parent="StartMenu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.2
@@ -235,6 +248,14 @@ anchor_right = 0.8
 anchor_bottom = 1.0
 max_value = 2.0
 step = 0.0
+
+[node name="LevelSelection" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="LevelManager" type="SubViewportContainer" parent="." node_paths=PackedStringArray("level_parent")]
 layout_mode = 1
@@ -258,5 +279,75 @@ audio_listener_enable_2d = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
+[node name="PauseMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.705882)
+
+[node name="Header" type="Label" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 0.25
+offset_top = -30.0
+offset_bottom = 30.0
+grow_vertical = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_frguu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.35
+anchor_right = 0.9
+anchor_bottom = 0.468
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/Buttons"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="PauseMenu/Buttons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RESTART"
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/Buttons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RESUME"
+
+[node name="MenuButton" type="Button" parent="PauseMenu/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MAIN MENU"
+
+[node name="VolumeSlider" type="HSlider" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.875
+anchor_right = 0.8
+anchor_bottom = 0.875
+max_value = 2.0
+step = 0.0
+
 [connection signal="pressed" from="StartMenu/Buttons/QuitButton" to="." method="quit"]
 [connection signal="pressed" from="StartMenu/Buttons/PlayButton" to="." method="start_game"]
+[connection signal="pressed" from="PauseMenu/Buttons/HBoxContainer/RestartButton" to="." method="restart_level"]
+[connection signal="pressed" from="PauseMenu/Buttons/HBoxContainer/ResumeButton" to="." method="toggle_pause"]
+[connection signal="pressed" from="PauseMenu/Buttons/MenuButton" to="." method="show_start_menu"]
