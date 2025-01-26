@@ -7,11 +7,14 @@ extends Node2D
 @export var bubble_scene: PackedScene
 @export var lifetime: float = 4
 
-var enabled: bool = true
+var enabled: bool = false
 var timer: float = 0
 
 var bubbles: Array[BubbleWithLifetime]
 
+
+func _ready() -> void:
+	LevelSignalBus.level_started.connect(destroy_all_bubbles)
 
 func _process(delta: float) -> void:
 	if !enabled: return
@@ -30,6 +33,8 @@ func emit_bubble():
 	add_child(new_bubble)
 	new_bubble.position = Vector2.RIGHT * (2 * randf() - 1) * spawn_width
 	new_bubble.radius = lerpf(minimum_size, maximum_size, pow(randf(), 2))
+	new_bubble.collision_layer = 0
+	new_bubble.collision_shape.disabled = true
 	$SfxBlop.play()
 
 	var b = BubbleWithLifetime.new()
@@ -39,6 +44,13 @@ func emit_bubble():
 
 func enable():
 	enabled = true
+
+
+func destroy_all_bubbles():
+	enabled = false
+	for bubble in bubbles:
+		if is_instance_valid(bubble.bubble):
+			bubble.bubble.queue_free()
 
 
 func bubble_should_live(bubble: BubbleWithLifetime) -> bool:
