@@ -39,7 +39,6 @@ func play_prefixed_animation(animation_name: String):
 
 func _on_breath_exhausted():
 	is_full = false
-	play_prefixed_animation('idle')
 
 func _on_breath_gained(_breath_amount: float):
 	is_full = true

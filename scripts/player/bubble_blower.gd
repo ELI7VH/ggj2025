@@ -7,7 +7,7 @@ signal breath_gained(breath_amount: float)
 signal breath_exhausted
 
 @export var bubble_scene: PackedScene
-@export var base_spawn_offset: float = 10
+@export var base_spawn_offset: float = 12
 @export var collection_proximity: float = 12
 @export var breath_empty_threshold: float = 2
 
@@ -24,6 +24,7 @@ var breath_capacity: float
 var breath: float
 
 var can_dash: bool: get = get_can_dash
+var is_blowing: bool: get = get_is_blowing
 var direction: int: get = get_direction
 var spawn_point: Vector2: get = get_spawn_point
 
@@ -40,11 +41,12 @@ func _process(delta: float) -> void:
 		collect_bubble(bubble)
 
 
-	if is_instance_valid(held_bubble):
+	if is_blowing:
 		held_bubble.global_position = spawn_point
 		
 		if Input.is_action_just_released('blow'):
-			held_bubble.buoyancy_enabled = true
+			held_bubble.movement_disabled = false
+			held_bubble.collision_layer = 1
 			bubble_blown.emit(held_bubble.radius)
 			expend_breath(held_bubble.radius)
 			held_bubble = null
@@ -57,7 +59,7 @@ func _process(delta: float) -> void:
 		held_bubble = bubble_scene.instantiate()
 		bubble_charging.emit()
 		fresh_bubbles.append(held_bubble)
-		held_bubble.buoyancy_enabled = false
+		held_bubble.movement_disabled = true
 		held_bubble.radius = size_minimum
 		get_parent().add_sibling(held_bubble)
 		held_bubble.global_position = spawn_point
@@ -66,7 +68,6 @@ func _process(delta: float) -> void:
 func spawn_dash_bubble():
 	var dash_bubble = bubble_scene.instantiate()
 	fresh_bubbles.append(dash_bubble)
-	dash_bubble.buoyancy_enabled = true
 	dash_bubble.radius = size_minimum
 	expend_breath(size_minimum)
 	get_parent().add_sibling(dash_bubble)
@@ -121,10 +122,13 @@ func bubble_is_close(bubble) -> bool:
 
 func get_spawn_point() -> Vector2:
 	var offset_distance = base_spawn_offset
-	if is_instance_valid(held_bubble):
+	if is_blowing:
 		offset_distance += held_bubble.radius
 	var offset = Vector2.RIGHT * direction * offset_distance
 	return global_position + offset
 
 func get_direction() -> int:
 	return get_parent().direction
+
+func get_is_blowing() -> bool:
+	return is_instance_valid(held_bubble)

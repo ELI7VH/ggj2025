@@ -11,7 +11,7 @@ const GROUP_NAME = 'bubbles'
 @export var collision_shape: CollisionShape2D
 @export var drawer: BubbleDrawer
 
-var buoyancy_enabled: bool = true: set = set_buoyancy_enabled
+var movement_disabled: bool = false: set = set_movement_disabled
 
 var collider: CircleShape2D
 
@@ -24,7 +24,7 @@ func _ready():
 
 
 func _physics_process(_delta: float) -> void:
-	if buoyancy_enabled:
+	if !movement_disabled:
 		var buoyancy_scale = radius / buoyancy_reference_scale
 		var buoyancy = base_buoyancy * buoyancy_scale
 		apply_central_force(Vector2.UP * buoyancy)
@@ -41,6 +41,6 @@ func set_radius(value: float):
 	if collider:
 		collider.radius = value
 
-func set_buoyancy_enabled(value: bool):
-	buoyancy_enabled = value
-	collision_layer = 1 if value else 0
+func set_movement_disabled(value: bool):
+	movement_disabled = value
+	freeze = value

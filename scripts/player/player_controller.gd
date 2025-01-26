@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	velocity += move_force * input_direction.normalized()
 	velocity.y += gravity
 
-	if abs(input_direction.x) > 0.1:
+	if abs(input_direction.x) > 0.1 && !bubble_blower.is_blowing:
 		if direction * input_direction.x < 0:
 			direction = 1 if (input_direction.x > 0) else -1
 			turned.emit()
