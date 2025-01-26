@@ -33,6 +33,7 @@ func _process(_delta: float):
 func start_game():
 	start_menu_root.hide()
 	level_manager.load_starting_level()
+	get_tree().paused = false
 	in_level = true
 
 func restart_level():
