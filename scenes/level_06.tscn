@@ -9,8 +9,7 @@
 [node name="Level06" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource("1_i3p84")]
-visible = false
-position = Vector2(170, 164)
+position = Vector2(167, 113)
 
 [node name="Player" parent="." instance=ExtResource("2_u7ole")]
 position = Vector2(289, 78)
