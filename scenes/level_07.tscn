@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://grpiefvvm1c8"]
+[gd_scene load_steps=9 format=4 uid="uid://grpiefvvm1c8"]
 
 [ext_resource type="PackedScene" uid="uid://7gxlt66kgcs6" path="res://scenes/branches/background.tscn" id="1_nx2q2"]
 [ext_resource type="PackedScene" uid="uid://bdseieyno6vv6" path="res://scenes/branches/player.tscn" id="3_4mpqj"]
 [ext_resource type="TileSet" uid="uid://d1ijrclhvlhta" path="res://resources/level_tile_set.tres" id="4_s7dww"]
+[ext_resource type="PackedScene" uid="uid://dn7dbmij8ny2f" path="res://scenes/branches/bgm/bubble-elevator-2-2.tscn" id="6_byyu4"]
 [ext_resource type="PackedScene" uid="uid://gvtohbq0stpi" path="res://scenes/branches/door6.tscn" id="6_dssid"]
 [ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="6_w2tl4"]
 [ext_resource type="PackedScene" uid="uid://b0m3fujdo7f3k" path="res://scenes/branches/bubble_receptacle.tscn" id="7_ni1bn"]
@@ -95,6 +96,8 @@ position = Vector2(-319, -100)
 [node name="Bubble10" parent="Bubbles" instance=ExtResource("6_w2tl4")]
 position = Vector2(-44, 64)
 radius = 6.0
+
+[node name="Bubble-elevator-2-1" parent="Bubbles" instance=ExtResource("6_byyu4")]
 
 [node name="Receptacle" parent="." instance=ExtResource("7_ni1bn")]
 position = Vector2(418, -75)
