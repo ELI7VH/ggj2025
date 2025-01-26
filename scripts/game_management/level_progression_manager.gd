@@ -31,8 +31,14 @@ func reset_level():
 
 
 func load_starting_level():
-	load_level(level_index_override if OS.has_feature("editor") else 0)
+	load_level_with_transition(level_index_override if OS.has_feature("editor") else 0)
 	LevelSignalBus.notify_level_started()
+
+func load_level_with_transition(level_index):
+	screen_transition.fill_then_open()
+	var load_tween = create_tween()
+	load_tween.tween_interval(screen_transition.fill_duration)
+	load_tween.tween_callback(func(): load_level(level_index))
 
 
 func load_level(level_index: int):
@@ -42,6 +48,7 @@ func load_level(level_index: int):
 		active_level_instance = levels[level_index].instantiate()
 		level_parent.add_child(active_level_instance)
 		current_level_index = level_index
+
 
 func unload_level():
 	if is_instance_valid(active_level_instance):

@@ -18,7 +18,7 @@ func _ready() -> void:
 		var new_button = selection_button_scene.instantiate()
 		selection_button_parent.add_child(new_button)
 		var on_press = func():
-			level_manager.load_level(index)
+			level_manager.load_level_with_transition(index)
 			LevelSignalBus.notify_level_started()
 		new_button.pressed.connect(on_press)
 		index += 1
