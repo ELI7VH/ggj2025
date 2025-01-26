@@ -28,6 +28,7 @@ var spawn_point: Vector2: get = get_spawn_point
 
 var held_bubble: Bubble = null
 var fresh_bubbles: Array[Bubble] = []
+var exhaust_signal_emitted: bool = false
 
 
 func _process(delta: float) -> void:
@@ -80,8 +81,9 @@ func get_can_dash() -> bool:
 func expend_breath(bubble_size: float):
 	breath -= bubble_size
 	clamp_breath()
-	if breath < breath_empty_threshold:
+	if breath < breath_empty_threshold && !exhaust_signal_emitted:
 		breath_exhausted.emit()
+		exhaust_signal_emitted = true
 
 
 func collect_bubble(bubble: Bubble):
@@ -94,6 +96,7 @@ func collect_bubble(bubble: Bubble):
 	breath += bubble.radius
 	clamp_breath()
 	breath_gained.emit(bubble.radius)
+	exhaust_signal_emitted = false
 
 
 func clamp_breath():
@@ -102,6 +105,9 @@ func clamp_breath():
 func limit_bubble_size(bubble_size: float) -> float:
 	var breath_limit = max(breath, size_minimum)
 	var current_maximum = min(size_maximum, breath_limit)
+	if breath - bubble_size < breath_empty_threshold && !exhaust_signal_emitted:
+		breath_exhausted.emit()
+		exhaust_signal_emitted = true
 	return clamp(bubble_size, size_minimum, current_maximum)
 
 
