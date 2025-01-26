@@ -28,6 +28,7 @@ var can_dash: bool: get = get_can_dash
 var is_blowing: bool: get = get_is_blowing
 var direction: int: get = get_direction
 var spawn_point: Vector2: get = get_spawn_point
+var held_bubble_scale: float
 
 var held_bubble: Bubble = null
 var bubble_hold_timer: float
@@ -64,15 +65,13 @@ func _process(delta: float) -> void:
 			bubble_blown.emit(held_bubble.radius)
 			expend_breath(held_bubble.radius)
 			held_bubble = null
+			held_bubble_scale = 0
 			
 		else:
 			bubble_hold_timer += delta
 			var normalized_bubble_size = bubble_hold_timer / size_growth_duration
 			var bubble_size = map_bubble_size(normalized_bubble_size)
-
-			if breath - bubble_size < breath_empty_threshold && !exhaust_signal_emitted:
-				breath_exhausted.emit()
-				exhaust_signal_emitted = true
+			held_bubble_scale = remap(bubble_size, size_minimum, size_maximum, 0, 1)
 
 			held_bubble.radius = bubble_size
 			held_bubble_collider.radius = bubble_size
@@ -87,6 +86,7 @@ func _process(delta: float) -> void:
 		held_bubble.global_position = spawn_point
 
 		bubble_hold_timer = 0
+		held_bubble_scale = 0
 		held_bubble_collider.radius = size_minimum
 		held_bubble_collision_shape.disabled = false
 
