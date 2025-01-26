@@ -39,3 +39,7 @@ func _on_bubble_blown(bubble_size):
 	var recoil = bubble_fixed_recoil
 	recoil += bubble_recoil_size_multiplier * bubble_size
 	velocity.x -= direction * recoil
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("menu"):
+		get_tree().quit()
