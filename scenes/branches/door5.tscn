@@ -1,36 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://di84fin82soio"]
+[gd_scene load_steps=4 format=3 uid="uid://di84fin82soio"]
 
-[ext_resource type="Script" path="res://scripts/door_2.gd" id="1_onhmj"]
 [ext_resource type="Texture2D" uid="uid://dl5k1hywiw7ls" path="res://sprites/Door.png" id="2_m0rdo"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j750p"]
-friction = 0.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttgfd"]
+size = Vector2(6, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mqcq"]
 size = Vector2(10, 127)
 
-[node name="Door5" type="RigidBody2D"]
-mass = 0.5
-physics_material_override = SubResource("PhysicsMaterial_j750p")
+[node name="Door5" type="Node2D"]
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="."]
+node_a = NodePath("StaticBody2D")
+node_b = NodePath("RigidBody2D")
+length = 63.0
+initial_offset = 63.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GrooveJoint2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrooveJoint2D/StaticBody2D"]
+position = Vector2(0, -90)
+shape = SubResource("RectangleShape2D_ttgfd")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="GrooveJoint2D"]
 can_sleep = false
 lock_rotation = true
-constant_force = Vector2(0, 6)
-script = ExtResource("1_onhmj")
+constant_force = Vector2(0, 12)
 
-[node name="DoorImg" type="Sprite2D" parent="."]
+[node name="DoorImg" type="Sprite2D" parent="GrooveJoint2D/RigidBody2D"]
 position = Vector2(-7.21216e-06, -30)
 scale = Vector2(0.217391, 0.5)
 texture = ExtResource("2_m0rdo")
 
-[node name="DoorColl" type="CollisionShape2D" parent="."]
+[node name="DoorColl" type="CollisionShape2D" parent="GrooveJoint2D/RigidBody2D"]
 position = Vector2(-7.15256e-06, -30)
 shape = SubResource("RectangleShape2D_1mqcq")
 
-[node name="DoorImg2" type="Sprite2D" parent="."]
-position = Vector2(204, 0)
+[node name="DoorImg2" type="Sprite2D" parent="GrooveJoint2D/RigidBody2D"]
+position = Vector2(180, 1)
 scale = Vector2(0.217391, 0.5)
 texture = ExtResource("2_m0rdo")
 
-[node name="DoorColl2" type="CollisionShape2D" parent="."]
-position = Vector2(204, 0)
+[node name="DoorColl2" type="CollisionShape2D" parent="GrooveJoint2D/RigidBody2D"]
+position = Vector2(180, 1)
 shape = SubResource("RectangleShape2D_1mqcq")
