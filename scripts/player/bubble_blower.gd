@@ -7,7 +7,7 @@ signal breath_gained(breath_amount: float)
 signal breath_exhausted
 
 @export var bubble_scene: PackedScene
-@export var base_spawn_offset: float = 12
+@export var base_spawn_offset: float = 10
 @export var collection_proximity: float = 12
 @export var breath_empty_threshold: float = 2
 
@@ -32,6 +32,17 @@ var held_bubble: Bubble = null
 var fresh_bubbles: Array[Bubble] = []
 var exhaust_signal_emitted: bool = false
 
+var held_bubble_collision_shape: CollisionShape2D
+var held_bubble_collider: CircleShape2D
+
+
+func _ready() -> void:
+	held_bubble_collision_shape = CollisionShape2D.new()
+	held_bubble_collision_shape.disabled = true
+	add_sibling.call_deferred(held_bubble_collision_shape)
+	held_bubble_collider = CircleShape2D.new()
+	held_bubble_collision_shape.shape = held_bubble_collider
+
 
 func _process(delta: float) -> void:
 	fresh_bubbles = fresh_bubbles.filter(bubble_is_close)
@@ -43,10 +54,11 @@ func _process(delta: float) -> void:
 
 	if is_blowing:
 		held_bubble.global_position = spawn_point
+		held_bubble_collision_shape.global_position = spawn_point
 		
 		if Input.is_action_just_released('blow'):
-			held_bubble.movement_disabled = false
-			held_bubble.collision_layer = 1
+			held_bubble_collision_shape.disabled = true
+			held_bubble.physics_disabled = false
 			bubble_blown.emit(held_bubble.radius)
 			expend_breath(held_bubble.radius)
 			held_bubble = null
@@ -54,15 +66,19 @@ func _process(delta: float) -> void:
 			var bubble_size = held_bubble.radius
 			bubble_size += size_growth_speed * delta
 			held_bubble.radius = limit_bubble_size(bubble_size)
+			held_bubble_collider.radius = held_bubble.radius
 	
 	elif Input.is_action_just_pressed('blow') && breath > breath_empty_threshold:
 		held_bubble = bubble_scene.instantiate()
 		bubble_charging.emit()
 		fresh_bubbles.append(held_bubble)
-		held_bubble.movement_disabled = true
+		held_bubble.physics_disabled = true
 		held_bubble.radius = size_minimum
 		get_parent().add_sibling(held_bubble)
 		held_bubble.global_position = spawn_point
+
+		held_bubble_collider.radius = size_minimum
+		held_bubble_collision_shape.disabled = false
 
 
 func spawn_dash_bubble():
