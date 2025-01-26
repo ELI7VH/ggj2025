@@ -20,6 +20,7 @@ var listening_for_threshold = true
 
 func _ready() -> void:
 	claw.constant_force = Vector2.DOWN * required_lift_force
+	fill_area.body_entered.connect(_on_body_entered_fill_area)
 
 
 func _physics_process(_delta: float) -> void:

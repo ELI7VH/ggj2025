@@ -11,6 +11,11 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func _on_receptacle_bubble_added(_current_progress: float) -> void:
+func _on_receptacle_bubble_added(current_progress: float) -> void:
+	var i = floori(current_progress * 6);
+	
+	print("progress: ",current_progress, "::", i)
+	if i == 6:
+		return
+	
 	play()
-	print('hi')
