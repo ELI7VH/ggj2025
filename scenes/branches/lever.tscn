@@ -1,9 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1ye15y32fx3j"]
-
-[ext_resource type="Texture2D" uid="uid://dl5k1hywiw7ls" path="res://sprites/Door.png" id="1_efg06"]
+[gd_scene load_steps=3 format=3 uid="uid://d1ye15y32fx3j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyeyd"]
-size = Vector2(2.625, 56.125)
+size = Vector2(123, 3.125)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vadlt"]
 radius = 2.0
@@ -11,16 +9,19 @@ radius = 2.0
 [node name="Lever" type="Node2D"]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
+mass = 20.0
 linear_damp = 1.0
-
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-position = Vector2(-2, -27.75)
-scale = Vector2(0.0869565, 0.220703)
-texture = ExtResource("1_efg06")
+constant_force = Vector2(0, 600)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(-1.6875, -27.9375)
+position = Vector2(60.5, -1)
 shape = SubResource("RectangleShape2D_yyeyd")
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D"]
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 122.0
+color = Color(0.552848, 0.278208, 0.0411117, 1)
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 node_a = NodePath("../RigidBody2D")
