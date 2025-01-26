@@ -3,6 +3,7 @@ extends Node2D
 
 signal bubble_charging
 signal bubble_blown(breath_expended: float)
+signal bubble_cant_blow
 signal breath_gained(breath_amount: float)
 signal breath_exhausted
 
@@ -88,7 +89,8 @@ func _process(delta: float) -> void:
 		held_bubble_scale = 0
 		held_bubble_collider.radius = size_minimum
 		held_bubble_collision_shape.disabled = false
-
+	elif Input.is_action_just_pressed('blow') && breath < size_minimum:
+			emit_signal("bubble_cant_blow")
 
 func spawn_dash_bubble():
 	var dash_bubble = bubble_scene.instantiate()

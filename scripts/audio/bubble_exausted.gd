@@ -12,4 +12,10 @@ func _process(_delta: float) -> void:
 
 
 func _on_bubble_blower_breath_exhausted() -> void:
+	pitch_scale = randf() * 0.2 + 0.9
+	play()
+
+
+func _on_bubble_blower_bubble_cant_blow() -> void:
+	pitch_scale = 0.6
 	play()

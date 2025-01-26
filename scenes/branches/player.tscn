@@ -119,7 +119,7 @@ bubble_blower = NodePath("../BubbleBlower")
 
 [node name="BubbleExausted" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_vegnw")
-volume_db = -4.8
+volume_db = -7.269
 bus = &"SFX"
 script = ExtResource("22_v5vnl")
 
@@ -144,4 +144,5 @@ script = ExtResource("46_85q6v")
 [connection signal="breath_gained" from="BubbleBlower" to="BreathGained" method="_on_bubble_blower_breath_gained"]
 [connection signal="bubble_blown" from="BubbleBlower" to="Bubbleshoot" method="_on_bubble_blower_bubble_blown"]
 [connection signal="bubble_blown" from="BubbleBlower" to="BubbleCharge" method="_on_bubble_blower_bubble_blown"]
+[connection signal="bubble_cant_blow" from="BubbleBlower" to="BubbleExausted" method="_on_bubble_blower_bubble_cant_blow"]
 [connection signal="bubble_charging" from="BubbleBlower" to="BubbleCharge" method="_on_bubble_blower_bubble_charging"]
