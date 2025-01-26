@@ -15,10 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://c6tovn87w4lsl" path="res://scenes/branches/ui/level_selection_button.tscn" id="8_r3qdp"]
 [ext_resource type="PackedScene" uid="uid://b0v343f6w47q4" path="res://scenes/level_05.tscn" id="9_cnvt4"]
 [ext_resource type="PackedScene" uid="uid://bce5ndl0qqw2a" path="res://scenes/level_06.tscn" id="10_122ot"]
-[ext_resource type="PackedScene" uid="uid://dnkr0j5omcbfw" path="res://scenes/level_11.tscn" id="11_ohn3t"]
-[ext_resource type="PackedScene" uid="uid://c03aotxj11s1x" path="res://scenes/level_12.tscn" id="12_hn1d4"]
+[ext_resource type="PackedScene" uid="uid://grpiefvvm1c8" path="res://scenes/level_07.tscn" id="16_0a2vk"]
 [ext_resource type="AudioStream" uid="uid://b3n11t47oipka" path="res://resources/audio/bgm/jeffereys-jouney-main-menu.ogg" id="16_x1v04"]
 [ext_resource type="AudioStream" uid="uid://ql1ie8qwsn0g" path="res://resources/audio/bgm/jefferys-journey-pause-menu.ogg" id="17_6s81u"]
+[ext_resource type="PackedScene" uid="uid://exb03u6bfkxa" path="res://scenes/level_08.tscn" id="17_ypwgd"]
 [ext_resource type="Shader" path="res://resources/shaders/bubble_wipe.gdshader" id="18_g8jmb"]
 [ext_resource type="Script" path="res://scripts/drawing/screen_transition.gd" id="19_os370"]
 
@@ -320,7 +320,7 @@ grow_vertical = 2
 mouse_filter = 2
 stretch = true
 script = ExtResource("1_n8oi1")
-levels = Array[PackedScene]([ExtResource("3_kwva6"), ExtResource("6_ahmts"), ExtResource("7_askdu"), ExtResource("8_6lyjg"), ExtResource("9_cnvt4"), ExtResource("10_122ot"), ExtResource("11_ohn3t"), ExtResource("12_hn1d4")])
+levels = Array[PackedScene]([ExtResource("3_kwva6"), ExtResource("6_ahmts"), ExtResource("7_askdu"), ExtResource("8_6lyjg"), ExtResource("9_cnvt4"), ExtResource("10_122ot"), ExtResource("16_0a2vk"), ExtResource("17_ypwgd")])
 level_parent = NodePath("Viewport")
 screen_transition = NodePath("../ScreenWipeEffect")
 
