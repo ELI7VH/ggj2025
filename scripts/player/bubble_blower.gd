@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 		collect_bubble(bubble)
 
 
-	if held_bubble:
+	if is_instance_valid(held_bubble):
 		held_bubble.global_position = spawn_point
 		
 		if Input.is_action_just_released('blow'):
