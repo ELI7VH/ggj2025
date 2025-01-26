@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://s0x57l5ypk82"]
+[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://s0x57l5ypk82"]
 
 [ext_resource type="Texture2D" uid="uid://bcodp13c4d37w" path="res://sprites/fish.png" id="1_kwseb"]
 
@@ -25,6 +25,10 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_547wn"]
 atlas = ExtResource("1_kwseb")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in00a"]
+atlas = ExtResource("1_kwseb")
+region = Rect2(0, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dt166"]
 atlas = ExtResource("1_kwseb")
@@ -56,7 +60,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oiuc4")
 }],
-"loop": false,
+"loop": true,
 "name": &"blow",
 "speed": 6.0
 }, {
@@ -84,6 +88,14 @@ animations = [{
 "loop": true,
 "name": &"empty_swim",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in00a")
+}],
+"loop": false,
+"name": &"fart",
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,

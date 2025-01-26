@@ -1,25 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdseieyno6vv6"]
+[gd_scene load_steps=6 format=3 uid="uid://bdseieyno6vv6"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_1ka8k"]
-[ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="2_4xxup"]
+[ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_rhct6"]
 [ext_resource type="PackedScene" uid="uid://gon0htus2txt" path="res://scenes/branches/player_animator.tscn" id="2_8l6ln"]
+[ext_resource type="Script" path="res://scripts/player/bubble_blower.gd" id="3_5a3ng"]
+[ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="4_wnpsa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdvex"]
 
-[node name="Player" type="RigidBody2D"]
-lock_rotation = true
-linear_damp = 1.0
-script = ExtResource("1_1ka8k")
-bubbleScene = ExtResource("2_4xxup")
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bubble_blower")]
+script = ExtResource("1_rhct6")
+move_force = null
+dash_force = null
+gravity = null
+friction = null
+bubble_blower = NodePath("BubbleBlower")
+bubble_fixed_recoil = null
+bubble_recoil_size_multiplier = null
+
+[node name="PlayerAnimator" parent="." instance=ExtResource("2_8l6ln")]
+position = Vector2(-1, -1)
+animation = &"fart"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kdvex")
 
-[node name="PlayerAnimator" parent="." instance=ExtResource("2_8l6ln")]
-animation = &"full_idle"
-frame = 0
-frame_progress = 0.0
+[node name="BubbleBlower" type="Node2D" parent="."]
+script = ExtResource("3_5a3ng")
+bubble_scene = ExtResource("4_wnpsa")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[connection signal="dashed" from="." to="PlayerAnimator" method="_on_dashed"]
+[connection signal="breath_exhausted" from="BubbleBlower" to="PlayerAnimator" method="_on_breath_exhausted"]
+[connection signal="breath_gained" from="BubbleBlower" to="PlayerAnimator" method="_on_breath_gained"]
