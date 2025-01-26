@@ -7,6 +7,8 @@ signal turned
 @export var dash_force: float = 600
 @export var gravity: float = 0.5
 @export_range(0, 1) var friction: float = 0.1
+@export var dash_push_period: float = 0.2
+@export var dash_push_force: float = 200
 
 @export_subgroup('bubbles', 'bubble')
 @export var bubble_blower: BubbleBlower
@@ -14,12 +16,13 @@ signal turned
 @export var bubble_recoil_size_multiplier: float = 2
 
 var direction = 1
+var push_period_timer = 0
 
 
 func _ready() -> void:
 	bubble_blower.bubble_blown.connect(_on_bubble_blown)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity += move_force * input_direction.normalized()
 	velocity.y += gravity
@@ -32,10 +35,20 @@ func _physics_process(_delta: float) -> void:
 	if bubble_blower.can_dash && Input.is_action_just_pressed('dash'):
 		bubble_blower.spawn_dash_bubble()
 		velocity.x += direction * dash_force
+		push_period_timer = dash_push_period
 		dashed.emit()
 	
 	velocity *= (1 - friction)
 	move_and_slide()
+	
+	if push_period_timer > 0:
+		push_period_timer -= delta
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			var colliding_body = collision.get_collider()
+			if colliding_body is RigidBody2D:
+				colliding_body.apply_central_force(-collision.get_normal() * dash_push_force)
+
 
 
 func _on_bubble_blown(bubble_size):
@@ -43,6 +56,6 @@ func _on_bubble_blown(bubble_size):
 	recoil += bubble_recoil_size_multiplier * bubble_size
 	velocity.x -= direction * recoil
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("menu"):
 		get_tree().quit()
