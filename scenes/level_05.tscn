@@ -36,11 +36,17 @@ tile_map_data = PackedByteArray("AAD///D/AAACAAEAAAAAAPD/AAABAAIAAAAAAO//AAACAAI
 tile_set = ExtResource("3_3ihs8")
 collision_enabled = false
 
+[node name="Bubble4" parent="." instance=ExtResource("5_eh776")]
+position = Vector2(235.497, 29.0951)
+
 [node name="Bubble" parent="." instance=ExtResource("5_eh776")]
 position = Vector2(-82, -3)
+physics_material_override = null
 
 [node name="Bubble3" parent="." instance=ExtResource("5_eh776")]
 position = Vector2(44, 20)
+physics_material_override = null
 
 [node name="Bubble2" parent="." instance=ExtResource("5_eh776")]
 position = Vector2(74.0135, 191.033)
+physics_material_override = null

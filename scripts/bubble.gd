@@ -29,8 +29,8 @@ func _physics_process(_delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	# remove bubble if it goes off screen
-	if (position.y < 0):
-		position.y = 0
+	if (position.y < -100):
+		position.y = -100
 
 
 func set_radius(value: float):
