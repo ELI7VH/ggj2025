@@ -181,7 +181,7 @@ script = ExtResource("14_c2vrc")
 
 [node name="RecievedBubs" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_0t8l7")
-volume_db = -8.96
+volume_db = -11.2
 bus = &"BUBS"
 script = ExtResource("20_08wj3")
 

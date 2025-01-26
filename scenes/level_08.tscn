@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://exb03u6bfkxa"]
+[gd_scene load_steps=8 format=4 uid="uid://exb03u6bfkxa"]
 
 [ext_resource type="PackedScene" uid="uid://7gxlt66kgcs6" path="res://scenes/branches/background.tscn" id="1_k2tmi"]
 [ext_resource type="PackedScene" uid="uid://bdseieyno6vv6" path="res://scenes/branches/player.tscn" id="2_58p6h"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="5_7e815"]
 [ext_resource type="PackedScene" uid="uid://bdu1qxwsj34jq" path="res://scenes/branches/door2.tscn" id="6_d0enx"]
 [ext_resource type="PackedScene" uid="uid://b0m3fujdo7f3k" path="res://scenes/branches/bubble_receptacle.tscn" id="6_shwcr"]
+[ext_resource type="PackedScene" uid="uid://mx6de7hev42" path="res://scenes/branches/bgm/bgm.tscn" id="7_la4km"]
 
 [node name="Level08" type="Node2D"]
 
@@ -126,3 +127,5 @@ radius = 4.0
 
 [node name="Receptacle" parent="." instance=ExtResource("6_shwcr")]
 position = Vector2(736, -36)
+
+[node name="tense-bgm" parent="." instance=ExtResource("7_la4km")]
