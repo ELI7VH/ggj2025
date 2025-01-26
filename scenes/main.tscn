@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bc5ut2d82sjoo"]
+[gd_scene load_steps=44 format=3 uid="uid://bc5ut2d82sjoo"]
 
 [ext_resource type="Theme" uid="uid://1h3bupl7mgim" path="res://resources/ui/menu.theme" id="1_8iac0"]
 [ext_resource type="Script" path="res://scripts/game_management/level_progression_manager.gd" id="1_n8oi1"]
@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://c03aotxj11s1x" path="res://scenes/level_12.tscn" id="12_hn1d4"]
 [ext_resource type="AudioStream" uid="uid://b3n11t47oipka" path="res://resources/audio/bgm/jeffereys-jouney-main-menu.ogg" id="16_x1v04"]
 [ext_resource type="AudioStream" uid="uid://ql1ie8qwsn0g" path="res://resources/audio/bgm/jefferys-journey-pause-menu.ogg" id="17_6s81u"]
+[ext_resource type="Shader" path="res://resources/shaders/bubble_wipe.gdshader" id="18_g8jmb"]
+[ext_resource type="Script" path="res://scripts/drawing/screen_transition.gd" id="19_os370"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_urmky"]
 size = Vector2(960, 100)
@@ -126,6 +128,19 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 9
 shadow_color = Color(0, 0, 0, 0.313726)
 shadow_offset = Vector2(1, -4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xaoyd"]
+shader = ExtResource("18_g8jmb")
+shader_parameter/radius = 2.2
+shader_parameter/aspect_ratio = Vector2(16, 9)
+
+[sub_resource type="Curve" id="Curve_lbgpa"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.563158, 0.659341), 0.0, 0.0, 0, 0, Vector2(0.715789, 0.648352), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_eixbi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
 
 [node name="Main" type="Control" node_paths=PackedStringArray("level_manager", "volume_sliders", "start_menu_root", "level_select_root", "pause_menu_root", "focus_entry_start", "focus_entry_pause")]
 process_mode = 3
@@ -298,7 +313,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 5
 
-[node name="LevelManager" type="SubViewportContainer" parent="." node_paths=PackedStringArray("level_parent")]
+[node name="LevelManager" type="SubViewportContainer" parent="." node_paths=PackedStringArray("level_parent", "screen_transition")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -310,6 +325,7 @@ stretch = true
 script = ExtResource("1_n8oi1")
 levels = Array[PackedScene]([ExtResource("3_kwva6"), ExtResource("6_ahmts"), ExtResource("7_askdu"), ExtResource("8_6lyjg"), ExtResource("9_cnvt4"), ExtResource("10_122ot"), ExtResource("11_ohn3t"), ExtResource("12_hn1d4")])
 level_parent = NodePath("Viewport")
+screen_transition = NodePath("../ScreenWipeEffect")
 
 [node name="Viewport" type="SubViewport" parent="LevelManager"]
 process_mode = 1
@@ -319,6 +335,20 @@ canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
+
+[node name="ScreenWipeEffect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_xaoyd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("19_os370")
+close_duration = 1.2
+close_curve = SubResource("Curve_lbgpa")
+open_curve = SubResource("Curve_eixbi")
 
 [node name="PauseMenu" type="Control" parent="."]
 visible = false

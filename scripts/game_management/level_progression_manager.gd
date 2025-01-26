@@ -5,9 +5,11 @@ signal final_level_completed
 
 @export var levels: Array[PackedScene]
 @export var level_parent: Node
+@export var screen_transition: ScreenTransition
 
 @export_subgroup('timing')
-@export var load_delay: float = 1.5
+@export var load_delay: float = 0.25
+@export var unload_delay: float = 1.5
 
 @export_subgroup('editor_overrides')
 @export var level_index_override: int = 0
@@ -47,10 +49,11 @@ func unload_level():
 
 
 func _on_level_completed():
+	screen_transition.close()
 	load_delay_tween = create_tween()
-	load_delay_tween.tween_interval(load_delay)
-	load_delay_tween.tween_callback(unload_level)
+	load_delay_tween.tween_interval(unload_delay)
 	load_delay_tween.tween_callback(_load_next_level)
+	load_delay_tween.tween_interval(load_delay)
 	load_delay_tween.tween_callback(_end_loading)
 
 
@@ -60,5 +63,6 @@ func _load_next_level():
 	get_tree().paused = true
 
 func _end_loading():
+	screen_transition.open()
 	LevelSignalBus.notify_level_started()
 	get_tree().paused = false
