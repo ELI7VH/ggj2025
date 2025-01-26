@@ -71,6 +71,7 @@ radius = 1.0
 
 [node name="Receptacle" type="Node2D" node_paths=PackedStringArray("claw", "fill_area", "screw", "animator")]
 script = ExtResource("2_mq814")
+required_lift_force = 300.0
 claw = NodePath("GrooveJoint2D/Claw")
 fill_area = NodePath("GrooveJoint2D/Claw/FIllArea")
 screw = NodePath("Screw")

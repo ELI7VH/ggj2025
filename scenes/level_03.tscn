@@ -19,9 +19,9 @@ move_force = 8.0
 dash_force = 600.0
 gravity = 0.5
 friction = 0.1
+initial_breath = 0.0
 bubble_fixed_recoil = 10.0
 bubble_recoil_size_multiplier = 2.0
-initial_breath = 0.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(200, 200)
