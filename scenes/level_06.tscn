@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://bce5ndl0qqw2a"]
+[gd_scene load_steps=7 format=4 uid="uid://bce5ndl0qqw2a"]
 
 [ext_resource type="PackedScene" uid="uid://7gxlt66kgcs6" path="res://scenes/branches/background.tscn" id="1_i3p84"]
+[ext_resource type="PackedScene" uid="uid://iqmbo01ia0a3" path="res://scenes/branches/shader_test.tscn" id="2_jmds2"]
 [ext_resource type="PackedScene" uid="uid://bdseieyno6vv6" path="res://scenes/branches/player.tscn" id="2_u7ole"]
 [ext_resource type="TileSet" uid="uid://d1ijrclhvlhta" path="res://resources/level_tile_set.tres" id="3_tiq13"]
 [ext_resource type="PackedScene" uid="uid://di84fin82soio" path="res://scenes/branches/door5.tscn" id="4_7vkox"]
@@ -11,16 +12,19 @@
 [node name="Background" parent="." instance=ExtResource("1_i3p84")]
 position = Vector2(167, 113)
 
+[node name="ShaderTest" parent="." instance=ExtResource("2_jmds2")]
+position = Vector2(171, 249)
+
 [node name="Player" parent="." instance=ExtResource("2_u7ole")]
 position = Vector2(289, 78)
 move_force = 8.0
 dash_force = 600.0
 gravity = 0.5
 friction = 0.1
-initial_breath = 0.0
-breath_capacity = 20.0
 bubble_fixed_recoil = 10.0
 bubble_recoil_size_multiplier = 2.0
+initial_breath = 0.0
+breath_capacity = 20.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(200, 200)

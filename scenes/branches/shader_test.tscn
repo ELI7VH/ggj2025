@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://iqmbo01ia0a3"]
+
+[ext_resource type="Shader" path="res://scenes/branches/shader_test.gdshader" id="1_cm1wc"]
+[ext_resource type="Texture2D" uid="uid://qoj7evk43pvo" path="res://sprites/Plant01.png" id="2_4yfy8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6lbl"]
+shader = ExtResource("1_cm1wc")
+shader_parameter/green = 1.0
+shader_parameter/radius = 20.0
+
+[node name="ShaderTest" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_n6lbl")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_4yfy8")
