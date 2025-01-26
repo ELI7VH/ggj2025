@@ -1,10 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://bsbm8pnd2clrv"]
+[gd_scene load_steps=34 format=3 uid="uid://bc5ut2d82sjoo"]
 
+[ext_resource type="Theme" uid="uid://1h3bupl7mgim" path="res://resources/ui/menu.theme" id="1_8iac0"]
 [ext_resource type="Script" path="res://scripts/game_management/level_progression_manager.gd" id="1_n8oi1"]
 [ext_resource type="Material" uid="uid://68uatcev871y" path="res://resources/materials/ocean_floor.material" id="1_s1c0w"]
+[ext_resource type="Script" path="res://scripts/game_management/menu_manager.gd" id="2_qc6e2"]
 [ext_resource type="Material" uid="uid://b3gp3aqkutk1x" path="res://resources/materials/water.material" id="2_stb7g"]
 [ext_resource type="Shader" path="res://resources/shaders/rays.gdshader" id="3_2jh5r"]
 [ext_resource type="PackedScene" uid="uid://drkynxt1jr0xh" path="res://scenes/level_01.tscn" id="3_kwva6"]
+[ext_resource type="Texture2D" uid="uid://bcodp13c4d37w" path="res://sprites/fish.png" id="5_5nmil"]
 [ext_resource type="PackedScene" uid="uid://8l1nxdmqnaeg" path="res://scenes/level_02.tscn" id="6_ahmts"]
 [ext_resource type="PackedScene" uid="uid://dq5mef13dr8js" path="res://scenes/level_03.tscn" id="7_askdu"]
 [ext_resource type="PackedScene" uid="uid://cqikbdoy240om" path="res://scenes/level_04.tscn" id="8_6lyjg"]
@@ -14,10 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://c03aotxj11s1x" path="res://scenes/level_12.tscn" id="12_hn1d4"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_urmky"]
-size = Vector2(960, 160)
+size = Vector2(960, 100)
 
 [sub_resource type="QuadMesh" id="QuadMesh_nesw8"]
-size = Vector2(960, 500)
+size = Vector2(960, 560)
 
 [sub_resource type="Gradient" id="Gradient_bc6vm"]
 interpolation_mode = 1
@@ -68,13 +71,63 @@ shader_parameter/texture_source = SubResource("NoiseTexture2D_w12ro")
 [sub_resource type="QuadMesh" id="QuadMesh_w7crw"]
 size = Vector2(960, 400)
 
-[node name="Main" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_ycd1v"]
+font_size = 42
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 9
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_offset = Vector2(1, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvh15"]
+atlas = ExtResource("5_5nmil")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8ib7"]
+atlas = ExtResource("5_5nmil")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gnot"]
+atlas = ExtResource("5_5nmil")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_547wn"]
+atlas = ExtResource("5_5nmil")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7pnu8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvh15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8ib7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gnot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_547wn")
+}],
+"loop": true,
+"name": &"empty_swim",
+"speed": 12.0
+}]
+
+[node name="Main" type="Control" node_paths=PackedStringArray("main_menu_root", "level_manager")]
+process_mode = 3
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_8iac0")
+script = ExtResource("2_qc6e2")
+main_menu_root = NodePath("StartMenu")
+level_manager = NodePath("LevelManager")
 
 [node name="Background" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -99,7 +152,7 @@ scale = Vector2(0.25, 0.25)
 [node name="Ground" type="MeshInstance2D" parent="Background/SubViewport/Node2D"]
 z_index = -9
 material = ExtResource("1_s1c0w")
-position = Vector2(0, 180)
+position = Vector2(0, 200)
 mesh = SubResource("QuadMesh_urmky")
 
 [node name="Water" type="MeshInstance2D" parent="Background/SubViewport/Node2D"]
@@ -123,6 +176,55 @@ material = SubResource("ShaderMaterial_s6jbe")
 position = Vector2(0, 20)
 mesh = SubResource("QuadMesh_w7crw")
 
+[node name="StartMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="StartMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.4
+anchor_right = 1.0
+anchor_bottom = 0.4
+grow_vertical = 2
+text = "Jeffrey's Journey"
+label_settings = SubResource("LabelSettings_ycd1v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="StartMenu"]
+position = Vector2(240, 140)
+sprite_frames = SubResource("SpriteFrames_7pnu8")
+animation = &"empty_swim"
+autoplay = "empty_swim"
+
+[node name="Buttons" type="HBoxContainer" parent="StartMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.6
+anchor_right = 0.9
+anchor_bottom = 0.775
+
+[node name="QuitButton" type="Button" parent="StartMenu/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "QUIT"
+
+[node name="LevelSelectButton" type="Button" parent="StartMenu/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LEVELS"
+
+[node name="PlayButton" type="Button" parent="StartMenu/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PLAY"
+
 [node name="LevelManager" type="SubViewportContainer" parent="." node_paths=PackedStringArray("level_parent")]
 layout_mode = 1
 anchors_preset = 15
@@ -130,15 +232,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 stretch = true
 script = ExtResource("1_n8oi1")
 levels = Array[PackedScene]([ExtResource("3_kwva6"), ExtResource("6_ahmts"), ExtResource("7_askdu"), ExtResource("8_6lyjg"), ExtResource("9_cnvt4"), ExtResource("10_122ot"), ExtResource("11_ohn3t"), ExtResource("12_hn1d4")])
 level_parent = NodePath("Viewport")
 
 [node name="Viewport" type="SubViewport" parent="LevelManager"]
+process_mode = 1
 transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
+
+[connection signal="pressed" from="StartMenu/Buttons/QuitButton" to="." method="quit"]
+[connection signal="pressed" from="StartMenu/Buttons/PlayButton" to="." method="start_game"]
