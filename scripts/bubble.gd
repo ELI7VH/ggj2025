@@ -3,12 +3,13 @@ extends RigidBody2D
 
 const GROUP_NAME = 'bubbles'
 
+@export var radius: float = 8: set = set_radius
+
 @export var base_buoyancy: float = 200
 @export var buoyancy_reference_scale: float = 10
 @export var collision_shape: CollisionShape2D
 @export var drawer: BubbleDrawer
 
-var radius: float = 8: set = set_radius
 var buoyancy_enabled: bool = true: set = set_buoyancy_enabled
 
 var collider: CircleShape2D
