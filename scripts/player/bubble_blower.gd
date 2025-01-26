@@ -9,7 +9,6 @@ signal breath_exhausted
 @export var bubble_scene: PackedScene
 @export var base_spawn_offset: float = 10
 @export var collection_proximity: float = 12
-@export var breath_empty_threshold: float = 2
 
 @export_subgroup('size', 'size')
 @export var size_minimum: float = 4
@@ -76,7 +75,7 @@ func _process(delta: float) -> void:
 			held_bubble.radius = bubble_size
 			held_bubble_collider.radius = bubble_size
 	
-	elif Input.is_action_just_pressed('blow') && breath > breath_empty_threshold:
+	elif Input.is_action_just_pressed('blow') && breath >= size_minimum:
 		held_bubble = bubble_scene.instantiate()
 		bubble_charging.emit()
 		fresh_bubbles.append(held_bubble)
@@ -104,13 +103,13 @@ func spawn_dash_bubble():
 	dash_bubble.apply_central_impulse(spawn_velocity)
 
 func get_can_dash() -> bool:
-	return breath > breath_empty_threshold
+	return breath >= size_minimum
 
 
 func expend_breath(bubble_size: float):
 	breath -= bubble_size
 	clamp_breath()
-	if breath <= breath_empty_threshold && !exhaust_signal_emitted:
+	if breath < size_minimum && !exhaust_signal_emitted:
 		breath_exhausted.emit()
 		exhaust_signal_emitted = true
 
