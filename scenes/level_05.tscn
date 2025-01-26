@@ -9,7 +9,7 @@
 [node name="Level05" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource("1_qkg7w")]
-position = Vector2(159, 205)
+position = Vector2(170, 164)
 
 [node name="Player" parent="." instance=ExtResource("2_wb6xu")]
 position = Vector2(288, 235)
