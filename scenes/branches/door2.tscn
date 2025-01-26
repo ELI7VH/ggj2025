@@ -11,7 +11,9 @@ size = Vector2(10, 127)
 
 [node name="Door2" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_j750p")
+can_sleep = false
 lock_rotation = true
+constant_force = Vector2(0, 100)
 script = ExtResource("1_l3xgk")
 
 [node name="DoorImg" type="Sprite2D" parent="."]
