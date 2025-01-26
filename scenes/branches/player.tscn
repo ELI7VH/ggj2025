@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bdseieyno6vv6"]
+[gd_scene load_steps=52 format=3 uid="uid://bdseieyno6vv6"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_rhct6"]
 [ext_resource type="PackedScene" uid="uid://gon0htus2txt" path="res://scenes/branches/player_animator.tscn" id="2_8l6ln"]
@@ -37,6 +37,15 @@
 [ext_resource type="AudioStream" uid="uid://4u7gjxk7gdma" path="res://resources/audio/sfx/breathgained/breath-gained-9.ogg" id="35_63qnh"]
 [ext_resource type="AudioStream" uid="uid://bh6lguvmugcey" path="res://resources/audio/sfx/breathgained/breath-gained-10.ogg" id="36_ocxyp"]
 [ext_resource type="Script" path="res://scripts/audio/breath_gained.gd" id="37_w8en8"]
+[ext_resource type="AudioStream" uid="uid://cs713vffggw08" path="res://resources/audio/sfx/dash/dash-1.ogg" id="38_l70up"]
+[ext_resource type="AudioStream" uid="uid://c5x72p1euca54" path="res://resources/audio/sfx/dash/dash-2.ogg" id="39_1lgnm"]
+[ext_resource type="AudioStream" uid="uid://cv1g2ojgxcdrl" path="res://resources/audio/sfx/dash/dash-3.ogg" id="40_28bih"]
+[ext_resource type="AudioStream" uid="uid://brue0ajrn72sh" path="res://resources/audio/sfx/dash/dash-4.ogg" id="41_tgv6b"]
+[ext_resource type="AudioStream" uid="uid://crxfyqsvhxo7y" path="res://resources/audio/sfx/dash/dash-5.ogg" id="42_j4maw"]
+[ext_resource type="AudioStream" uid="uid://tcf8548w2cy6" path="res://resources/audio/sfx/dash/dash-6.ogg" id="43_yovry"]
+[ext_resource type="AudioStream" uid="uid://evmswmtm3crb" path="res://resources/audio/sfx/dash/dash-7.ogg" id="44_v33ui"]
+[ext_resource type="AudioStream" uid="uid://n5apnm3jnua2" path="res://resources/audio/sfx/dash/dash-8.ogg" id="45_7vpdh"]
+[ext_resource type="Script" path="res://scripts/audio/dash.gd" id="46_85q6v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdvex"]
 
@@ -77,6 +86,17 @@ stream_11/stream = ExtResource("26_usqoa")
 stream_12/stream = ExtResource("27_f8nvj")
 stream_13/stream = ExtResource("28_ri40h")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pklgd"]
+streams_count = 8
+stream_0/stream = ExtResource("38_l70up")
+stream_1/stream = ExtResource("39_1lgnm")
+stream_2/stream = ExtResource("40_28bih")
+stream_3/stream = ExtResource("41_tgv6b")
+stream_4/stream = ExtResource("42_j4maw")
+stream_5/stream = ExtResource("43_yovry")
+stream_6/stream = ExtResource("44_v33ui")
+stream_7/stream = ExtResource("45_7vpdh")
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bubble_blower")]
 script = ExtResource("1_rhct6")
 move_force = null
@@ -103,6 +123,7 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="Bubbleshoot" parent="." instance=ExtResource("5_08ebj")]
+mix_target = 2
 script = ExtResource("6_sj4sp")
 
 [node name="BubbleCharge" type="AudioStreamPlayer" parent="."]
@@ -112,6 +133,7 @@ script = ExtResource("15_6n6wj")
 
 [node name="BubbleExausted" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_vegnw")
+volume_db = -4.8
 script = ExtResource("22_v5vnl")
 
 [node name="BreathGained" type="AudioStreamPlayer" parent="."]
@@ -119,7 +141,13 @@ stream = SubResource("AudioStreamRandomizer_s4lf6")
 volume_db = -14.813
 script = ExtResource("37_w8en8")
 
+[node name="Dash" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_pklgd")
+volume_db = -7.098
+script = ExtResource("46_85q6v")
+
 [connection signal="dashed" from="." to="PlayerAnimator" method="_on_dashed"]
+[connection signal="dashed" from="." to="Dash" method="_on_player_dashed"]
 [connection signal="breath_exhausted" from="BubbleBlower" to="PlayerAnimator" method="_on_breath_exhausted"]
 [connection signal="breath_exhausted" from="BubbleBlower" to="BubbleCharge" method="_on_bubble_blower_breath_exhausted"]
 [connection signal="breath_exhausted" from="BubbleBlower" to="BubbleExausted" method="_on_bubble_blower_breath_exhausted"]
