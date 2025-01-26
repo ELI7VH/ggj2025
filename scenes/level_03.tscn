@@ -35,9 +35,3 @@ buoyancy = 400.0
 
 [node name="Bubble3" parent="." instance=ExtResource("5_uihc2")]
 position = Vector2(116, 259)
-
-[node name="Bubble4" parent="." instance=ExtResource("5_uihc2")]
-position = Vector2(125, 292)
-
-[node name="Bubble5" parent="." instance=ExtResource("5_uihc2")]
-position = Vector2(153, 333)
