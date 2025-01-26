@@ -62,7 +62,7 @@ func _process(delta: float) -> void:
 func spawn_dash_bubble():
 	var dash_bubble = bubble_scene.instantiate()
 	fresh_bubbles.append(dash_bubble)
-	dash_bubble.physics_enabled = true
+	dash_bubble.buoyancy_enabled = true
 	dash_bubble.radius = size_minimum
 	expend_breath(size_minimum)
 	get_parent().add_sibling(dash_bubble)
