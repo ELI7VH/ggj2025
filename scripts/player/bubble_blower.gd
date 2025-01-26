@@ -110,7 +110,7 @@ func bubble_is_close(bubble) -> bool:
 
 func get_spawn_point() -> Vector2:
 	var offset_distance = base_spawn_offset
-	if held_bubble:
+	if is_instance_valid(held_bubble):
 		offset_distance += held_bubble.radius
 	var offset = Vector2.RIGHT * direction * offset_distance
 	return global_position + offset
