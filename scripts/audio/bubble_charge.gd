@@ -1,4 +1,5 @@
-extends AudioStreamPlayer2D
+extends AudioStreamPlayer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,7 +10,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-func on_play() -> void:
-	# ajudiop player logic
-	play()
+func _on_bubble_blower_breath_exhausted() -> void:
+	stop()
