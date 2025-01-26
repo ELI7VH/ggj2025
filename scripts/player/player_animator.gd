@@ -8,6 +8,8 @@ var state: State
 
 func _ready():
 	animation_finished.connect(_on_animation_finished)
+	is_full = get_parent().initial_breath > 1
+	play_prefixed_animation('idle')
 
 func _process(_delta: float):
 	if Input.is_action_just_pressed('blow'):
