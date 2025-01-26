@@ -15,6 +15,7 @@ signal breath_exhausted
 @export var size_minimum: float = 4
 @export var size_maximum: float = 20
 @export var size_growth_speed: float = 20
+@export var size_growth_duration: float = 1.5
 
 @export_subgroup('dash', 'dash')
 @export var dash_spawn_offset: float = -20
@@ -29,6 +30,7 @@ var direction: int: get = get_direction
 var spawn_point: Vector2: get = get_spawn_point
 
 var held_bubble: Bubble = null
+var bubble_hold_timer: float
 var fresh_bubbles: Array[Bubble] = []
 var exhaust_signal_emitted: bool = false
 
@@ -62,11 +64,18 @@ func _process(delta: float) -> void:
 			bubble_blown.emit(held_bubble.radius)
 			expend_breath(held_bubble.radius)
 			held_bubble = null
+			
 		else:
-			var bubble_size = held_bubble.radius
-			bubble_size += size_growth_speed * delta
-			held_bubble.radius = limit_bubble_size(bubble_size)
-			held_bubble_collider.radius = held_bubble.radius
+			bubble_hold_timer += delta
+			var normalized_bubble_size = bubble_hold_timer / size_growth_duration
+			var bubble_size = map_bubble_size(normalized_bubble_size)
+
+			if breath - bubble_size < breath_empty_threshold && !exhaust_signal_emitted:
+				breath_exhausted.emit()
+				exhaust_signal_emitted = true
+
+			held_bubble.radius = bubble_size
+			held_bubble_collider.radius = bubble_size
 	
 	elif Input.is_action_just_pressed('blow') && breath > breath_empty_threshold:
 		held_bubble = bubble_scene.instantiate()
@@ -77,6 +86,7 @@ func _process(delta: float) -> void:
 		get_parent().add_sibling(held_bubble)
 		held_bubble.global_position = spawn_point
 
+		bubble_hold_timer = 0
 		held_bubble_collider.radius = size_minimum
 		held_bubble_collision_shape.disabled = false
 
@@ -87,13 +97,14 @@ func spawn_dash_bubble():
 	dash_bubble.radius = size_minimum
 	expend_breath(size_minimum)
 	get_parent().add_sibling(dash_bubble)
+
 	dash_bubble.global_position = global_position
 	dash_bubble.global_position.x += direction * dash_spawn_offset
 	var spawn_velocity = Vector2.RIGHT * direction * dash_spawn_impulse
 	dash_bubble.apply_central_impulse(spawn_velocity)
 
 func get_can_dash() -> bool:
-	return breath > 0
+	return breath > breath_empty_threshold
 
 
 func expend_breath(bubble_size: float):
@@ -119,14 +130,13 @@ func collect_bubble(bubble: Bubble):
 
 func clamp_breath():
 	breath = clampf(breath, 0, breath_capacity)
+	
 
-func limit_bubble_size(bubble_size: float) -> float:
+func map_bubble_size(normalized_bubble_size: float) -> float:
+	var t = easeInOut(normalized_bubble_size)
 	var breath_limit = max(breath, size_minimum)
 	var current_maximum = min(size_maximum, breath_limit)
-	if breath - bubble_size < breath_empty_threshold && !exhaust_signal_emitted:
-		breath_exhausted.emit()
-		exhaust_signal_emitted = true
-	return clamp(bubble_size, size_minimum, current_maximum)
+	return int(remap(t, 0, 1, size_minimum, current_maximum))
 
 
 func bubble_is_close(bubble) -> bool:
@@ -148,3 +158,7 @@ func get_direction() -> int:
 
 func get_is_blowing() -> bool:
 	return is_instance_valid(held_bubble)
+
+
+func easeInOut(t: float):
+	return -(cos(PI * t) - 1) / 2
