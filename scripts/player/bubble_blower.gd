@@ -12,7 +12,7 @@ signal breath_exhausted
 @export var breath_empty_threshold: float = 2
 
 @export_subgroup('size', 'size')
-@export var size_minimum: float = 5
+@export var size_minimum: float = 4
 @export var size_maximum: float = 20
 @export var size_growth_speed: float = 20
 
