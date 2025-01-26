@@ -32,7 +32,7 @@ collision_enabled = false
 position = Vector2(153.518, 312.357)
 
 [node name="Bubble3" parent="." instance=ExtResource("5_nb7or")]
-position = Vector2(118.161, 13.7824)
+position = Vector2(105, 142)
 
 [node name="Bubble2" parent="." instance=ExtResource("5_nb7or")]
-position = Vector2(404.95, 41.8439)
+position = Vector2(379, 294)
