@@ -31,7 +31,7 @@ tile_map_data = PackedByteArray("AAD5//H/AAABAAIAAAD6//H/AAABAAEAAAD7//H/AAACAAI
 tile_set = ExtResource("3_djyee")
 collision_enabled = false
 
-[node name="Bubble-elevator" parent="." instance=ExtResource("5_q4rll")]
+[node name="bubble-elevator-1" parent="." instance=ExtResource("5_q4rll")]
 
 [node name="Receptacle" parent="." instance=ExtResource("6_3pmfl")]
 position = Vector2(354, -17)

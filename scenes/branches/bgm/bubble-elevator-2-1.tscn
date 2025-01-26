@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://rdmopx7vdtri"]
+
+[ext_resource type="AudioStream" uid="uid://bj2c4tpo0dls2" path="res://resources/audio/bgm/bubble-elevator-2.1.ogg" id="1_yq1r0"]
+
+[node name="Bubble-elevator-2-1" type="Node"]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_yq1r0")
+volume_db = -3.001
+autoplay = true
+parameters/looping = true

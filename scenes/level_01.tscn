@@ -27,7 +27,7 @@ tile_map_data = PackedByteArray("AAD6/wAAAAACAAAAAAD6/wEAAAACAAEAAAD6/wIAAAABAAI
 tile_set = ExtResource("3_4600v")
 collision_enabled = false
 
-[node name="Bubble-elevator" parent="." instance=ExtResource("4_rjbsd")]
+[node name="bubble-elevator-1" parent="." instance=ExtResource("4_rjbsd")]
 
 [node name="Bubbles" type="Node" parent="."]
 

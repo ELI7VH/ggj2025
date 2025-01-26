@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://b0v343f6w47q4"]
+[gd_scene load_steps=8 format=4 uid="uid://b0v343f6w47q4"]
 
 [ext_resource type="PackedScene" uid="uid://7gxlt66kgcs6" path="res://scenes/branches/background.tscn" id="1_qkg7w"]
 [ext_resource type="PackedScene" uid="uid://bdseieyno6vv6" path="res://scenes/branches/player.tscn" id="2_wb6xu"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://4hvlgnu57qld" path="res://scenes/branches/door4.tscn" id="4_3whtn"]
 [ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="5_eh776"]
 [ext_resource type="PackedScene" uid="uid://b0m3fujdo7f3k" path="res://scenes/branches/bubble_receptacle.tscn" id="6_6bxtv"]
+[ext_resource type="PackedScene" uid="uid://rdmopx7vdtri" path="res://scenes/branches/bgm/bubble-elevator-2-1.tscn" id="7_17gtu"]
 
 [node name="Level05" type="Node2D"]
 
@@ -65,4 +66,5 @@ radius = 6.0
 
 [node name="Receptacle" parent="." instance=ExtResource("6_6bxtv")]
 position = Vector2(410.401, 27.8273)
-required_lift_force = 300.0
+
+[node name="Bubble-elevator-2-1" parent="." instance=ExtResource("7_17gtu")]

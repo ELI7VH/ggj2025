@@ -131,7 +131,7 @@ script = ExtResource("37_w8en8")
 
 [node name="Dash" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_pklgd")
-volume_db = -7.098
+volume_db = -8.641
 bus = &"SFX"
 script = ExtResource("46_85q6v")
 

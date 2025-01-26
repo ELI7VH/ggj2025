@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ber3xyo3t3vbv" path="res://sprites/background2.jpg" id="2_q27lu"]
 [ext_resource type="TileSet" uid="uid://d1ijrclhvlhta" path="res://resources/level_tile_set.tres" id="3_4600v"]
 [ext_resource type="PackedScene" uid="uid://bt6hpk7l2vi7" path="res://scenes/branches/door.tscn" id="4_gp4ih"]
-[ext_resource type="PackedScene" uid="uid://blto5xmw2iuax" path="res://scenes/branches/bgm/bubble-elevator.tscn" id="5_u5ivy"]
+[ext_resource type="PackedScene" uid="uid://mx6de7hev42" path="res://scenes/branches/bgm/bgm.tscn" id="6_8r4ee"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_hglqh"]
 
@@ -30,4 +30,4 @@ position = Vector2(86, 206)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("ConvexPolygonShape2D_hglqh")
 
-[node name="Bubble-elevator" parent="." instance=ExtResource("5_u5ivy")]
+[node name="tense-bgm" parent="." instance=ExtResource("6_8r4ee")]

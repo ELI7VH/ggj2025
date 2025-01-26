@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://d1ijrclhvlhta" path="res://resources/level_tile_set.tres" id="3_odj1q"]
 [ext_resource type="PackedScene" uid="uid://gvtohbq0stpi" path="res://scenes/branches/door6.tscn" id="4_87utf"]
 [ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="5_inrbn"]
-[ext_resource type="PackedScene" uid="uid://blto5xmw2iuax" path="res://scenes/branches/bgm/bubble-elevator.tscn" id="6_eby1k"]
+[ext_resource type="PackedScene" uid="uid://rdmopx7vdtri" path="res://scenes/branches/bgm/bubble-elevator-2-1.tscn" id="7_e121h"]
 [ext_resource type="PackedScene" uid="uid://b0m3fujdo7f3k" path="res://scenes/branches/bubble_receptacle.tscn" id="7_oewiy"]
 
 [node name="Level04" type="Node2D"]
@@ -44,8 +44,6 @@ tile_map_data = PackedByteArray("AAD6//H/AAACAAEAAAD7//H/AAACAAIAAAD7//L/AAACAAE
 tile_set = ExtResource("3_odj1q")
 collision_enabled = false
 
-[node name="Bubble-elevator" parent="." instance=ExtResource("6_eby1k")]
-
 [node name="Bubbles" type="Node" parent="."]
 
 [node name="Bubble" parent="Bubbles" instance=ExtResource("5_inrbn")]
@@ -70,4 +68,5 @@ radius = 4.0
 
 [node name="Receptacle" parent="." instance=ExtResource("7_oewiy")]
 position = Vector2(389, -13)
-required_lift_force = 300.0
+
+[node name="Bubble-elevator-2-1" parent="." instance=ExtResource("7_e121h")]
