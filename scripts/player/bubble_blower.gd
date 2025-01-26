@@ -158,10 +158,6 @@ func get_direction() -> int:
 
 func get_is_blowing() -> bool:
 	return is_instance_valid(held_bubble)
-<<<<<<< HEAD
-
 
 func easeInOut(t: float):
 	return -(cos(PI * t) - 1) / 2
-=======
->>>>>>> 988eaa6 (Playing with a shader)
