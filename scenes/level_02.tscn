@@ -1,15 +1,14 @@
 [gd_scene load_steps=5 format=4 uid="uid://8l1nxdmqnaeg"]
 
-[ext_resource type="Texture2D" uid="uid://ber3xyo3t3vbv" path="res://sprites/background2.jpg" id="1_q847m"]
+[ext_resource type="PackedScene" uid="uid://7gxlt66kgcs6" path="res://scenes/branches/background.tscn" id="1_mooio"]
 [ext_resource type="PackedScene" uid="uid://bdseieyno6vv6" path="res://scenes/branches/player.tscn" id="2_pd1du"]
 [ext_resource type="TileSet" uid="uid://d1ijrclhvlhta" path="res://resources/level_tile_set.tres" id="3_djyee"]
 [ext_resource type="PackedScene" uid="uid://bt6hpk7l2vi7" path="res://scenes/branches/door.tscn" id="4_tfv0u"]
 
 [node name="Level02" type="Node2D"]
 
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(185, 146)
-texture = ExtResource("1_q847m")
+[node name="Background" parent="." instance=ExtResource("1_mooio")]
+position = Vector2(49, 241)
 
 [node name="Player" parent="." instance=ExtResource("2_pd1du")]
 position = Vector2(-93, 80)
