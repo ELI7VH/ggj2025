@@ -113,6 +113,8 @@ func limit_bubble_size(bubble_size: float) -> float:
 
 
 func bubble_is_close(bubble) -> bool:
+	if bubble == held_bubble:
+		return true
 	var bubble_position = bubble.global_position
 	var distance = spawn_point.distance_to(bubble_position)
 	return distance < collection_proximity + bubble.radius
