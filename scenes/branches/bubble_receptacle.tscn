@@ -69,7 +69,12 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_1q237"]
 radius = 1.0
 
-[node name="Receptacle" type="Node2D"]
+[node name="Receptacle" type="Node2D" node_paths=PackedStringArray("claw", "fill_area", "screw", "animator")]
+script = ExtResource("2_mq814")
+claw = NodePath("GrooveJoint2D/Claw")
+fill_area = NodePath("GrooveJoint2D/Claw/FIllArea")
+screw = NodePath("Screw")
+animator = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -96,16 +101,12 @@ initial_offset = 18.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrooveJoint2D/Anchor"]
 shape = SubResource("CircleShape2D_1q237")
 
-[node name="Claw" type="RigidBody2D" parent="GrooveJoint2D" node_paths=PackedStringArray("fill_area", "screw", "animator")]
+[node name="Claw" type="RigidBody2D" parent="GrooveJoint2D"]
 position = Vector2(0, 48)
 can_sleep = false
 lock_rotation = true
 linear_damp = 0.6
 constant_force = Vector2(0, 600)
-script = ExtResource("2_mq814")
-fill_area = NodePath("FIllArea")
-screw = NodePath("../../Screw")
-animator = NodePath("../../AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="GrooveJoint2D/Claw"]
 z_index = 1
