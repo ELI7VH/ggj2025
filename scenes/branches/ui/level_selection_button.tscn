@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c6tovn87w4lsl"]
+
+[node name="LevelSelectionButton" type="Button"]
+size_flags_horizontal = 3
+text = "1"

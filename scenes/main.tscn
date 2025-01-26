@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bc5ut2d82sjoo"]
+[gd_scene load_steps=39 format=3 uid="uid://bc5ut2d82sjoo"]
 
 [ext_resource type="Theme" uid="uid://1h3bupl7mgim" path="res://resources/ui/menu.theme" id="1_8iac0"]
 [ext_resource type="Script" path="res://scripts/game_management/level_progression_manager.gd" id="1_n8oi1"]
@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bcodp13c4d37w" path="res://sprites/fish.png" id="5_5nmil"]
 [ext_resource type="PackedScene" uid="uid://8l1nxdmqnaeg" path="res://scenes/level_02.tscn" id="6_ahmts"]
 [ext_resource type="PackedScene" uid="uid://dq5mef13dr8js" path="res://scenes/level_03.tscn" id="7_askdu"]
+[ext_resource type="Script" path="res://scripts/game_management/level_selection_menu.gd" id="7_uqm86"]
 [ext_resource type="PackedScene" uid="uid://cqikbdoy240om" path="res://scenes/level_04.tscn" id="8_6lyjg"]
+[ext_resource type="PackedScene" uid="uid://c6tovn87w4lsl" path="res://scenes/branches/ui/level_selection_button.tscn" id="8_r3qdp"]
 [ext_resource type="PackedScene" uid="uid://b0v343f6w47q4" path="res://scenes/level_05.tscn" id="9_cnvt4"]
 [ext_resource type="PackedScene" uid="uid://bce5ndl0qqw2a" path="res://scenes/level_06.tscn" id="10_122ot"]
 [ext_resource type="PackedScene" uid="uid://dnkr0j5omcbfw" path="res://scenes/level_11.tscn" id="11_ohn3t"]
@@ -125,7 +127,7 @@ shadow_size = 9
 shadow_color = Color(0, 0, 0, 0.313726)
 shadow_offset = Vector2(1, -4)
 
-[node name="Main" type="Control" node_paths=PackedStringArray("level_manager", "volume_sliders", "start_menu_root", "level_select_root", "pause_menu_root", "focus_entry_start", "focus_entry_level_select", "focus_entry_pause")]
+[node name="Main" type="Control" node_paths=PackedStringArray("level_manager", "volume_sliders", "start_menu_root", "level_select_root", "pause_menu_root", "focus_entry_start", "focus_entry_pause")]
 process_mode = 3
 texture_filter = 1
 layout_mode = 3
@@ -139,10 +141,9 @@ script = ExtResource("2_qc6e2")
 level_manager = NodePath("LevelManager")
 volume_sliders = [NodePath("StartMenu/VolumeSlider"), NodePath("PauseMenu/VolumeSlider")]
 start_menu_root = NodePath("StartMenu")
-level_select_root = NodePath("LevelSelection")
+level_select_root = NodePath("LevelSelectionMenu")
 pause_menu_root = NodePath("PauseMenu")
 focus_entry_start = NodePath("StartMenu/Buttons/PlayButton")
-focus_entry_level_select = NodePath("LevelSelection")
 focus_entry_pause = NodePath("PauseMenu/Buttons/HBoxContainer/RestartButton")
 
 [node name="Background" type="SubViewportContainer" parent="."]
@@ -251,13 +252,51 @@ anchor_bottom = 1.0
 max_value = 2.0
 step = 0.0
 
-[node name="LevelSelection" type="Control" parent="."]
+[node name="LevelSelectionMenu" type="Control" parent="." node_paths=PackedStringArray("selection_button_parent", "level_manager")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("7_uqm86")
+selection_button_scene = ExtResource("8_r3qdp")
+selection_button_parent = NodePath("LevelButtons")
+level_manager = NodePath("../LevelManager")
+
+[node name="Header" type="Label" parent="LevelSelectionMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_right = 1.0
+offset_top = 18.0
+text = "Select A Level"
+label_settings = SubResource("LabelSettings_frguu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="LevelSelectionMenu"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 1
+anchors_preset = -1
+offset_left = 8.0
+offset_top = 8.0
+text = "Back"
+
+[node name="LevelButtons" type="GridContainer" parent="LevelSelectionMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.2
+anchor_right = 1.0
+anchor_bottom = 0.2
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
 
 [node name="LevelManager" type="SubViewportContainer" parent="." node_paths=PackedStringArray("level_parent")]
 layout_mode = 1
@@ -282,6 +321,7 @@ size = Vector2i(480, 270)
 render_target_update_mode = 4
 
 [node name="PauseMenu" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -358,7 +398,9 @@ stream = ExtResource("17_6s81u")
 bus = &"BGM"
 
 [connection signal="pressed" from="StartMenu/Buttons/QuitButton" to="." method="quit"]
+[connection signal="pressed" from="StartMenu/Buttons/LevelSelectButton" to="." method="show_level_select_screen"]
 [connection signal="pressed" from="StartMenu/Buttons/PlayButton" to="." method="start_game"]
+[connection signal="pressed" from="LevelSelectionMenu/BackButton" to="." method="show_start_menu"]
 [connection signal="pressed" from="PauseMenu/Buttons/HBoxContainer/RestartButton" to="." method="restart_level"]
 [connection signal="pressed" from="PauseMenu/Buttons/HBoxContainer/ResumeButton" to="." method="toggle_pause"]
 [connection signal="pressed" from="PauseMenu/Buttons/MenuButton" to="." method="show_start_menu"]

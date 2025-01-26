@@ -10,13 +10,14 @@ extends Control
 
 @export_subgroup('focus elements', 'focus_entry')
 @export var focus_entry_start: Control
-@export var focus_entry_level_select: Control
 @export var focus_entry_pause: Control
 
 var in_level: bool = false
 
 
 func _ready() -> void:
+	LevelSignalBus.level_started.connect(_on_level_started)
+
 	var master_bus_index = AudioServer.get_bus_index('Master')
 	var linear_volume = db_to_linear(AudioServer.get_bus_volume_db(master_bus_index))
 	for slider in volume_sliders:
@@ -39,8 +40,6 @@ func start_game():
 
 func restart_level():
 	level_manager.reset_level()
-	get_tree().paused = false
-	hide_all_submenus()
 
 
 func show_start_menu():
@@ -55,7 +54,6 @@ func show_start_menu():
 func show_level_select_screen():
 	hide_all_submenus()
 	level_select_root.show()
-	focus_entry_level_select.grab_focus()
 
 func quit():
 	get_tree().quit()
@@ -76,6 +74,12 @@ func hide_all_submenus():
 	start_menu_root.hide()
 	level_select_root.hide()
 	pause_menu_root.hide()
+
+
+func _on_level_started():
+	in_level = true
+	get_tree().paused = false
+	hide_all_submenus()
 
 
 func _set_master_volume(value: float):
