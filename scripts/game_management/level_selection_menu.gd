@@ -8,6 +8,7 @@ extends Control
 
 var selection_buttons: Array[Button]
 
+signal change
 
 func _ready() -> void:
 	visibility_changed.connect(_visibility_changed)
@@ -18,6 +19,7 @@ func _ready() -> void:
 		var new_button = selection_button_scene.instantiate()
 		selection_button_parent.add_child(new_button)
 		var on_press = func():
+			change.emit()
 			level_manager.load_level_with_transition(index)
 			LevelSignalBus.notify_level_started()
 		new_button.pressed.connect(on_press)
