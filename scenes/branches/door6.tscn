@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://gvtohbq0stpi"]
+
+[ext_resource type="Texture2D" uid="uid://dl5k1hywiw7ls" path="res://sprites/Door.png" id="1_82o4r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mqcq"]
+size = Vector2(10, 127)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3knv"]
+
+[node name="Door6" type="Node2D"]
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="."]
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+length = 100.0
+initial_offset = 50.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+can_sleep = false
+lock_rotation = true
+constant_force = Vector2(0, 50)
+
+[node name="DoorImg" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(-5.96046e-08, 0)
+scale = Vector2(0.217391, 0.5)
+texture = ExtResource("1_82o4r")
+
+[node name="DoorColl" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_1mqcq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_n3knv")
