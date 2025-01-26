@@ -59,6 +59,7 @@ script = ExtResource("6_sj4sp")
 
 [node name="BubbleCharge" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_d5ks2")
+volume_db = -17.6
 script = ExtResource("15_6n6wj")
 
 [connection signal="dashed" from="." to="PlayerAnimator" method="_on_dashed"]
@@ -66,3 +67,5 @@ script = ExtResource("15_6n6wj")
 [connection signal="breath_exhausted" from="BubbleBlower" to="BubbleCharge" method="_on_bubble_blower_breath_exhausted"]
 [connection signal="breath_gained" from="BubbleBlower" to="PlayerAnimator" method="_on_breath_gained"]
 [connection signal="bubble_blown" from="BubbleBlower" to="Bubbleshoot" method="_on_bubble_blower_bubble_blown"]
+[connection signal="bubble_blown" from="BubbleBlower" to="BubbleCharge" method="_on_bubble_blower_bubble_blown"]
+[connection signal="bubble_charging" from="BubbleBlower" to="BubbleCharge" method="_on_bubble_blower_bubble_charging"]

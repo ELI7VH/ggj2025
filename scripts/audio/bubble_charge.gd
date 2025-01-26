@@ -10,5 +10,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func _on_bubble_blower_bubble_charging() -> void:
+	play()
+
+func _on_bubble_blower_bubble_blown(breath_expended: float) -> void:
+	stop()
+
 func _on_bubble_blower_breath_exhausted() -> void:
+	print('should stop')
 	stop()
