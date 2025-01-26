@@ -1,6 +1,7 @@
 class_name BubbleBlower
 extends Node2D
 
+signal bubble_charging
 signal bubble_blown(breath_expended: float)
 signal breath_gained(breath_amount: float)
 signal breath_exhausted
@@ -52,6 +53,7 @@ func _process(delta: float) -> void:
 	
 	elif Input.is_action_just_pressed('blow') && breath > breath_empty_threshold:
 		held_bubble = bubble_scene.instantiate()
+		bubble_charging.emit()
 		fresh_bubbles.append(held_bubble)
 		held_bubble.buoyancy_enabled = false
 		held_bubble.radius = size_minimum
