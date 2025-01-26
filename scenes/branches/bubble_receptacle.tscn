@@ -1,0 +1,121 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0m3fujdo7f3k"]
+
+[ext_resource type="Texture2D" uid="uid://kcuylfs6mkum" path="res://sprites/recepticle_screw.png" id="1_1liht"]
+[ext_resource type="Script" path="res://scripts/bubble_receptacle.gd" id="2_mq814"]
+[ext_resource type="Texture2D" uid="uid://qnta4kbjdog2" path="res://sprites/recepticle.png" id="3_vn568"]
+
+[sub_resource type="Animation" id="Animation_sjgin"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GrooveJoint2D/Claw/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Screw:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ivx1j"]
+resource_name = "spin"
+length = 0.437506
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GrooveJoint2D/Claw/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Screw:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.3125),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_elivb"]
+_data = {
+"RESET": SubResource("Animation_sjgin"),
+"spin": SubResource("Animation_ivx1j")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1q237"]
+radius = 1.0
+
+[node name="Receptacle" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_elivb")
+}
+autoplay = "RESET"
+
+[node name="Screw" type="Sprite2D" parent="."]
+z_index = -1
+texture_repeat = 2
+texture = ExtResource("1_1liht")
+hframes = 3
+region_enabled = true
+region_rect = Rect2(0, 0, 18, 64)
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="."]
+node_a = NodePath("Anchor")
+node_b = NodePath("Claw")
+length = 18.0
+initial_offset = 18.0
+
+[node name="Anchor" type="StaticBody2D" parent="GrooveJoint2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrooveJoint2D/Anchor"]
+shape = SubResource("CircleShape2D_1q237")
+
+[node name="Claw" type="RigidBody2D" parent="GrooveJoint2D" node_paths=PackedStringArray("fill_area", "screw", "animator")]
+position = Vector2(0, 48)
+can_sleep = false
+lock_rotation = true
+linear_damp = 0.6
+constant_force = Vector2(0, 600)
+script = ExtResource("2_mq814")
+fill_area = NodePath("FIllArea")
+screw = NodePath("../../Screw")
+animator = NodePath("../../AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="GrooveJoint2D/Claw"]
+z_index = 1
+texture = ExtResource("3_vn568")
+hframes = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GrooveJoint2D/Claw"]
+polygon = PackedVector2Array(-21, 12, -17, -2, -11, -8, -4, -11, 0, -14, 4, -11, 11, -8, 17, -2, 21, 12, 23, 12, 24, 3, 20, -10, 17, -13, 6, -16, -6, -16, -17, -13, -20, -10, -24, 3, -23, 12)
+
+[node name="FIllArea" type="Area2D" parent="GrooveJoint2D/Claw"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GrooveJoint2D/Claw/FIllArea"]
+polygon = PackedVector2Array(-17, -2, -9, -9, 9, -9, 17, -2, 20, 5, -20, 5)
