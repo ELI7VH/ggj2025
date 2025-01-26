@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bdseieyno6vv6"]
+[gd_scene load_steps=42 format=3 uid="uid://bdseieyno6vv6"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_rhct6"]
 [ext_resource type="PackedScene" uid="uid://gon0htus2txt" path="res://scenes/branches/player_animator.tscn" id="2_8l6ln"]
@@ -15,6 +15,28 @@
 [ext_resource type="AudioStream" uid="uid://dkfp5q60xk2qn" path="res://resources/audio/sfx/bubblecharge/bubble-charge-7.ogg" id="13_rjo76"]
 [ext_resource type="AudioStream" uid="uid://c3ebk52s6egxm" path="res://resources/audio/sfx/bubblecharge/bubble-charge-8.ogg" id="14_kj77a"]
 [ext_resource type="Script" path="res://scripts/audio/bubble_charge.gd" id="15_6n6wj"]
+[ext_resource type="AudioStream" uid="uid://cgov1a7ro5hi4" path="res://resources/audio/sfx/bubbleexausted/bubble-exausted-1.ogg" id="16_2fjb3"]
+[ext_resource type="AudioStream" uid="uid://b23t1inwm7ka0" path="res://resources/audio/sfx/bubbleexausted/bubble-exausted-2.ogg" id="17_8a46f"]
+[ext_resource type="AudioStream" uid="uid://cqw8xjpi48gwf" path="res://resources/audio/sfx/bubbleexausted/bubble-exausted-3.ogg" id="18_anfjp"]
+[ext_resource type="AudioStream" uid="uid://i2nueesu4lr5" path="res://resources/audio/sfx/bubbleexausted/bubble-exausted-4.ogg" id="19_lgg7u"]
+[ext_resource type="AudioStream" uid="uid://cpugvsh8vs1vf" path="res://resources/audio/sfx/bubbleexausted/bubble-exausted-5.ogg" id="20_5lr8a"]
+[ext_resource type="AudioStream" uid="uid://dati2lxgx31aj" path="res://resources/audio/sfx/bubbleexausted/bubble-exausted-6.ogg" id="21_oujhn"]
+[ext_resource type="Script" path="res://scripts/audio/bubble_exausted.gd" id="22_v5vnl"]
+[ext_resource type="AudioStream" uid="uid://boq31rf31sxu3" path="res://resources/audio/sfx/breathgained/breath-gained-1.ogg" id="23_aj8gx"]
+[ext_resource type="AudioStream" uid="uid://bv5dfox0scf2x" path="res://resources/audio/sfx/breathgained/breath-gained-2.ogg" id="24_efs4f"]
+[ext_resource type="AudioStream" uid="uid://ndytcxccxegy" path="res://resources/audio/sfx/breathgained/breath-gained-11.ogg" id="25_65371"]
+[ext_resource type="AudioStream" uid="uid://d13s3bxns21a7" path="res://resources/audio/sfx/breathgained/breath-gained-12.ogg" id="26_usqoa"]
+[ext_resource type="AudioStream" uid="uid://dv0ycfhhstmnx" path="res://resources/audio/sfx/breathgained/breath-gained-13.ogg" id="27_f8nvj"]
+[ext_resource type="AudioStream" uid="uid://dg1hl4rv0r60a" path="res://resources/audio/sfx/breathgained/breath-gained-14.ogg" id="28_ri40h"]
+[ext_resource type="AudioStream" uid="uid://c3426ljp8e3ej" path="res://resources/audio/sfx/breathgained/breath-gained-3.ogg" id="29_id65o"]
+[ext_resource type="AudioStream" uid="uid://d6o1edoue1se" path="res://resources/audio/sfx/breathgained/breath-gained-4.ogg" id="30_k4p3q"]
+[ext_resource type="AudioStream" uid="uid://paj0nigiwh63" path="res://resources/audio/sfx/breathgained/breath-gained-5.ogg" id="31_pbm5h"]
+[ext_resource type="AudioStream" uid="uid://bc4e0q6kd4rl0" path="res://resources/audio/sfx/breathgained/breath-gained-6.ogg" id="32_gcj8j"]
+[ext_resource type="AudioStream" uid="uid://dfw1xu7xsalei" path="res://resources/audio/sfx/breathgained/breath-gained-7.ogg" id="33_xclpj"]
+[ext_resource type="AudioStream" uid="uid://cg5yn1tt0cl0w" path="res://resources/audio/sfx/breathgained/breath-gained-8.ogg" id="34_4ta4f"]
+[ext_resource type="AudioStream" uid="uid://4u7gjxk7gdma" path="res://resources/audio/sfx/breathgained/breath-gained-9.ogg" id="35_63qnh"]
+[ext_resource type="AudioStream" uid="uid://bh6lguvmugcey" path="res://resources/audio/sfx/breathgained/breath-gained-10.ogg" id="36_ocxyp"]
+[ext_resource type="Script" path="res://scripts/audio/breath_gained.gd" id="37_w8en8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdvex"]
 
@@ -28,6 +50,32 @@ stream_4/stream = ExtResource("11_7n5f5")
 stream_5/stream = ExtResource("12_3ph20")
 stream_6/stream = ExtResource("13_rjo76")
 stream_7/stream = ExtResource("14_kj77a")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vegnw"]
+streams_count = 6
+stream_0/stream = ExtResource("16_2fjb3")
+stream_1/stream = ExtResource("17_8a46f")
+stream_2/stream = ExtResource("18_anfjp")
+stream_3/stream = ExtResource("19_lgg7u")
+stream_4/stream = ExtResource("20_5lr8a")
+stream_5/stream = ExtResource("21_oujhn")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s4lf6"]
+streams_count = 14
+stream_0/stream = ExtResource("23_aj8gx")
+stream_1/stream = ExtResource("24_efs4f")
+stream_2/stream = ExtResource("29_id65o")
+stream_3/stream = ExtResource("30_k4p3q")
+stream_4/stream = ExtResource("31_pbm5h")
+stream_5/stream = ExtResource("32_gcj8j")
+stream_6/stream = ExtResource("33_xclpj")
+stream_7/stream = ExtResource("34_4ta4f")
+stream_8/stream = ExtResource("35_63qnh")
+stream_9/stream = ExtResource("36_ocxyp")
+stream_10/stream = ExtResource("25_65371")
+stream_11/stream = ExtResource("26_usqoa")
+stream_12/stream = ExtResource("27_f8nvj")
+stream_13/stream = ExtResource("28_ri40h")
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bubble_blower")]
 script = ExtResource("1_rhct6")
@@ -62,10 +110,21 @@ stream = SubResource("AudioStreamRandomizer_d5ks2")
 volume_db = -17.6
 script = ExtResource("15_6n6wj")
 
+[node name="BubbleExausted" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_vegnw")
+script = ExtResource("22_v5vnl")
+
+[node name="BreathGained" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_s4lf6")
+volume_db = -14.813
+script = ExtResource("37_w8en8")
+
 [connection signal="dashed" from="." to="PlayerAnimator" method="_on_dashed"]
 [connection signal="breath_exhausted" from="BubbleBlower" to="PlayerAnimator" method="_on_breath_exhausted"]
 [connection signal="breath_exhausted" from="BubbleBlower" to="BubbleCharge" method="_on_bubble_blower_breath_exhausted"]
+[connection signal="breath_exhausted" from="BubbleBlower" to="BubbleExausted" method="_on_bubble_blower_breath_exhausted"]
 [connection signal="breath_gained" from="BubbleBlower" to="PlayerAnimator" method="_on_breath_gained"]
+[connection signal="breath_gained" from="BubbleBlower" to="BreathGained" method="_on_bubble_blower_breath_gained"]
 [connection signal="bubble_blown" from="BubbleBlower" to="Bubbleshoot" method="_on_bubble_blower_bubble_blown"]
 [connection signal="bubble_blown" from="BubbleBlower" to="BubbleCharge" method="_on_bubble_blower_bubble_blown"]
 [connection signal="bubble_charging" from="BubbleBlower" to="BubbleCharge" method="_on_bubble_blower_bubble_charging"]
