@@ -81,6 +81,9 @@ func _on_level_started():
 	get_tree().paused = false
 	hide_all_submenus()
 
+func disable_pause():
+	in_level = false
+
 
 func _set_master_volume(value: float):
 	var master_bus_index = AudioServer.get_bus_index('Master')

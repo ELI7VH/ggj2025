@@ -29,11 +29,6 @@ func _physics_process(_delta: float) -> void:
 		var buoyancy = base_buoyancy * buoyancy_scale
 		apply_central_force(Vector2.UP * buoyancy)
 
-func _process(_delta: float) -> void:
-	# remove bubble if it goes off screen
-	if (position.y < -100):
-		position.y = -100
-
 
 func set_radius(value: float):
 	radius = value

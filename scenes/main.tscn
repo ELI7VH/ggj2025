@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bc5ut2d82sjoo"]
+[gd_scene load_steps=47 format=3 uid="uid://bc5ut2d82sjoo"]
 
 [ext_resource type="Theme" uid="uid://1h3bupl7mgim" path="res://resources/ui/menu.theme" id="1_8iac0"]
 [ext_resource type="Script" path="res://scripts/game_management/level_progression_manager.gd" id="1_n8oi1"]
@@ -9,16 +9,19 @@
 [ext_resource type="PackedScene" uid="uid://drkynxt1jr0xh" path="res://scenes/level_01.tscn" id="3_kwva6"]
 [ext_resource type="Texture2D" uid="uid://bcodp13c4d37w" path="res://sprites/fish.png" id="5_5nmil"]
 [ext_resource type="PackedScene" uid="uid://8l1nxdmqnaeg" path="res://scenes/level_02.tscn" id="6_ahmts"]
+[ext_resource type="Script" path="res://scripts/lifetimed_bubble_wall.gd" id="6_lrbei"]
+[ext_resource type="PackedScene" uid="uid://cykdvgxbocvfp" path="res://scenes/branches/bubble.tscn" id="7_5drvx"]
 [ext_resource type="PackedScene" uid="uid://dq5mef13dr8js" path="res://scenes/level_03.tscn" id="7_askdu"]
 [ext_resource type="Script" path="res://scripts/game_management/level_selection_menu.gd" id="7_uqm86"]
 [ext_resource type="PackedScene" uid="uid://cqikbdoy240om" path="res://scenes/level_04.tscn" id="8_6lyjg"]
+[ext_resource type="PackedScene" uid="uid://q8326f5rk154" path="res://scenes/branches/sfx_blop.tscn" id="8_8qsie"]
 [ext_resource type="PackedScene" uid="uid://c6tovn87w4lsl" path="res://scenes/branches/ui/level_selection_button.tscn" id="8_r3qdp"]
 [ext_resource type="PackedScene" uid="uid://b0v343f6w47q4" path="res://scenes/level_05.tscn" id="9_cnvt4"]
 [ext_resource type="PackedScene" uid="uid://bce5ndl0qqw2a" path="res://scenes/level_06.tscn" id="10_122ot"]
-[ext_resource type="PackedScene" uid="uid://grpiefvvm1c8" path="res://scenes/level_07.tscn" id="16_0a2vk"]
+[ext_resource type="PackedScene" path="res://scenes/level_07.tscn" id="16_0a2vk"]
 [ext_resource type="AudioStream" uid="uid://b3n11t47oipka" path="res://resources/audio/bgm/jeffereys-jouney-main-menu.ogg" id="16_x1v04"]
 [ext_resource type="AudioStream" uid="uid://ql1ie8qwsn0g" path="res://resources/audio/bgm/jefferys-journey-pause-menu.ogg" id="17_6s81u"]
-[ext_resource type="PackedScene" uid="uid://exb03u6bfkxa" path="res://scenes/level_08.tscn" id="17_ypwgd"]
+[ext_resource type="PackedScene" path="res://scenes/level_08.tscn" id="17_ypwgd"]
 [ext_resource type="Shader" path="res://resources/shaders/bubble_wipe.gdshader" id="18_g8jmb"]
 [ext_resource type="Script" path="res://scripts/drawing/screen_transition.gd" id="19_os370"]
 
@@ -139,6 +142,14 @@ shader_parameter/aspect_ratio = Vector2(16, 9)
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.563158, 0.659341), 0.0, 0.0, 0, 0, Vector2(0.715789, 0.648352), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 4
 
+[sub_resource type="LabelSettings" id="LabelSettings_tg0cp"]
+font_size = 80
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 16
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_offset = Vector2(-2, -8)
+
 [node name="Main" type="Control" node_paths=PackedStringArray("level_manager", "volume_sliders", "start_menu_root", "level_select_root", "pause_menu_root", "focus_entry_start", "focus_entry_pause")]
 process_mode = 3
 texture_filter = 1
@@ -204,6 +215,15 @@ z_index = -5
 material = SubResource("ShaderMaterial_s6jbe")
 position = Vector2(0, 20)
 mesh = SubResource("QuadMesh_w7crw")
+
+[node name="WinningBubbleWall" type="Node2D" parent="Background/SubViewport"]
+position = Vector2(0, 200)
+script = ExtResource("6_lrbei")
+emit_period = 0.1
+bubble_scene = ExtResource("7_5drvx")
+lifetime = 5.0
+
+[node name="SfxBlop" parent="Background/SubViewport/WinningBubbleWall" instance=ExtResource("8_8qsie")]
 
 [node name="StartMenu" type="Control" parent="."]
 layout_mode = 1
@@ -424,10 +444,49 @@ parameters/looping = true
 stream = ExtResource("17_6s81u")
 bus = &"BGM"
 
+[node name="WinScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinText" type="Label" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.4
+anchor_right = 1.0
+anchor_bottom = 0.4
+grow_vertical = 2
+text = "YOU WIN!"
+label_settings = SubResource("LabelSettings_tg0cp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="WinScreen"]
+custom_minimum_size = Vector2(72, 32)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.65
+anchor_right = 0.5
+anchor_bottom = 0.65
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "MENU"
+
 [connection signal="pressed" from="StartMenu/Buttons/PlayButton" to="." method="start_game"]
 [connection signal="pressed" from="StartMenu/Buttons/LevelSelectButton" to="." method="show_level_select_screen"]
 [connection signal="pressed" from="StartMenu/Buttons/QuitButton" to="." method="quit"]
 [connection signal="pressed" from="LevelSelectionMenu/BackButton" to="." method="show_start_menu"]
+[connection signal="final_level_completed" from="LevelManager" to="." method="disable_pause"]
+[connection signal="final_level_completed" from="LevelManager" to="WinScreen" method="show"]
+[connection signal="final_level_completed" from="LevelManager" to="Background/SubViewport/WinningBubbleWall" method="enable"]
 [connection signal="pressed" from="PauseMenu/Buttons/HBoxContainer/RestartButton" to="." method="restart_level"]
 [connection signal="pressed" from="PauseMenu/Buttons/HBoxContainer/ResumeButton" to="." method="toggle_pause"]
 [connection signal="pressed" from="PauseMenu/Buttons/MenuButton" to="." method="show_start_menu"]
+[connection signal="pressed" from="WinScreen/BackButton" to="." method="show_start_menu"]
+[connection signal="pressed" from="WinScreen/BackButton" to="WinScreen" method="hide"]
