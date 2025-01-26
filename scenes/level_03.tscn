@@ -57,4 +57,4 @@ radius = 4.0
 
 [node name="Receptacle" parent="." instance=ExtResource("7_s4spi")]
 position = Vector2(-95, 0)
-required_lift_force = 400.0
+required_lift_force = 300.0

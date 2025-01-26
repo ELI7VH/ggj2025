@@ -65,4 +65,4 @@ radius = 6.0
 
 [node name="Receptacle" parent="." instance=ExtResource("6_6bxtv")]
 position = Vector2(410.401, 27.8273)
-required_lift_force = 400.0
+required_lift_force = 300.0
