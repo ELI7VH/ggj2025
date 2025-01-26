@@ -110,22 +110,27 @@ func get_can_dash() -> bool:
 func expend_breath(bubble_size: float):
 	breath -= bubble_size
 	clamp_breath()
-	if breath < breath_empty_threshold && !exhaust_signal_emitted:
+	if breath <= breath_empty_threshold && !exhaust_signal_emitted:
 		breath_exhausted.emit()
 		exhaust_signal_emitted = true
 
 
 func collect_bubble(bubble: Bubble):
-	if breath >= breath_capacity:
-		return
-	if breath_capacity - breath > bubble.radius / 2:
+	if breath >= breath_capacity: return
+
+	exhaust_signal_emitted = false
+	var capacity_remaining = breath_capacity - breath
+	var breath_transferred = bubble.radius
+
+	if breath_transferred < capacity_remaining:
 		bubble.queue_free()
 	else:
-		bubble.radius -= breath_capacity - breath
-	breath += bubble.radius
+		if bubble.radius < capacity_remaining + size_minimum:
+			breath_transferred = bubble.radius - size_minimum
+		bubble.radius -= breath_transferred
+	breath += breath_transferred
 	clamp_breath()
-	breath_gained.emit(bubble.radius)
-	exhaust_signal_emitted = false
+	breath_gained.emit(breath_transferred)
 
 
 func clamp_breath():
