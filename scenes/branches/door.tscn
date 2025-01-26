@@ -6,14 +6,15 @@
 friction = 0.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mqcq"]
-size = Vector2(12, 127)
+size = Vector2(10, 127)
 
 [node name="Door" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_j750p")
 lock_rotation = true
 
 [node name="DoorImg" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.5)
+position = Vector2(-5.96046e-08, 0)
+scale = Vector2(0.217391, 0.5)
 texture = ExtResource("1_5lwq0")
 
 [node name="DoorColl" type="CollisionShape2D" parent="."]
